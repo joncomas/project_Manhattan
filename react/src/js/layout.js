@@ -2,10 +2,11 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
+import injectContext from "./store/appContext";
 import { HomeReal } from "./views/homereal";
 import { Home } from "./views/home";
 import { Registro } from "./views/register";
-import injectContext from "./store/appContext";
+import { CrearCampaña } from "./views/crearcampaña";
 
 import MasterLayoutRoute from "./layout/template";
 import VistaPrincipalRoute from "./layout/otrotemplate";
@@ -27,6 +28,7 @@ export class Layout extends React.Component {
 					<ScrollToTop>
 						<Switch>
 							<MasterLayoutRoute exact path="/" component={Home} />
+							<MasterLayoutRoute exact path="/crearcampaña" component={CrearCampaña} />
 							<VistaPrincipalRoute exact path="/login" component={HomeReal} />
 							<Route exact path="/register" component={Registro} />
 							<Route render={() => <h1>Error 404!</h1>} />
