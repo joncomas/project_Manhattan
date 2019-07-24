@@ -15,6 +15,7 @@ djangorestframework = "*"
 pygraphviz = "*"
 django-extensions = "*"
 django-rest-swagger = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 
