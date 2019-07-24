@@ -30,9 +30,11 @@ class Campaign(models.Model):
     details = models.CharField(max_length=500, default='')
 
 class TypeOfCampaing(models.Model):
+    fk_campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE,)
     name = models.CharField(max_length=50, default='')
 
 class CampaignStatus(models.Model):
+    fk_campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE,)
     name = models.CharField(max_length=50, default='')
 
 class Results(models.Model):
