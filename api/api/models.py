@@ -17,17 +17,26 @@ class Person(models.Model):
     fk_user = models.ForeignKey(User)
     name = models.CharField(max_length=50, default='')
     rut_person = models.IntegerField(max_length=20, default='')
-    birth_date = models.DateField(input_formats=settings.DATE_INPUT_FORMATS)
+    birth_date = models.DateField(required=True)
 
 class Campaign(models.Model):
     fk_user = models.ForeignKey(User)
     name_camp = models.CharField(max_length=50, default='')
     search_target = models.CharField(max_length=50, default='')
     item_to_search = models.CharField(max_length=150, default='')
-    start_date = models.DateField(input_formats=settins.DATE_INPUT_FORMATS)
+    start_date = models.DateField(required=True)
+    ends_date = models.DateField(required=True)
+    details = models.CharField(max_length=500, default='')
 
+class Type_of_campaing(models.Model):
+    name = models.CharField(max_length=50, default='')
 
+class Campaign_status(models.model):
+    name = models.CharField(max_length=50, default='')
 
+class Results(models.Model):
+    fk_campaign = models.ForeignKey(Campaign)
+    results = models.CharField(max_length=500, default='')
 
 """
 The ContactSerializer is where you will specify what properties
