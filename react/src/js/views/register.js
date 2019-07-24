@@ -6,8 +6,23 @@ export class Registro extends React.Component {
 	constructor() {
 		super();
 		this.actioncontext = null;
+		this.nombredelapersona = React.createRef();
+		this.nombredeusuario = React.createRef();
+		this.passwordusuario = React.createRef();
+		this.emiliousuario = React.createRef();
+		this.rutusuario = React.createRef();
 		this.state = {
 			variableparaquenosemeolvidequeexisteelestate: []
+		};
+		this.botonobtenerregistro = this.botonobtenerregistro.bind(this);
+	}
+	botonobtenerregistro() {
+		const info = {
+			nombre: this.nombredelapersona.current.value,
+			nick: this.nombredeusuario.current.value,
+			pass: this.passwordusuario.current.value,
+			emilio: this.emiliousuario.current.value,
+			rut: this.rutusuario.current.value
 		};
 	}
 	render() {
@@ -26,6 +41,7 @@ export class Registro extends React.Component {
 											className="form-control"
 											id="inputnombre"
 											placeholder="Nombre"
+											ref={this.nombredelapersona}
 										/>
 									</div>
 									<div className="form-group col-md-6">
@@ -35,6 +51,7 @@ export class Registro extends React.Component {
 											className="form-control"
 											id="inputnick"
 											placeholder="Nombre de usuario"
+											ref={this.nombredeusuario}
 										/>
 									</div>
 									<div className="form-group col-md-6">
@@ -44,6 +61,7 @@ export class Registro extends React.Component {
 											className="form-control"
 											id="inputPassword1"
 											placeholder="Password"
+											ref={this.passwordusuario}
 										/>
 									</div>
 									<div className="form-group col-md-6">
@@ -62,6 +80,7 @@ export class Registro extends React.Component {
 											className="form-control"
 											id="inputEmail1"
 											placeholder="Ingrese email"
+											ref={this.emiliousuario}
 										/>
 									</div>
 									<div className="form-group col-md-6">
@@ -81,10 +100,14 @@ export class Registro extends React.Component {
 										className="form-control"
 										id="inputrut"
 										placeholder="12345678-9"
+										ref={this.rutusuario}
 									/>
 								</div>
 								<Link to="/login">
-									<button type="submit" className="btn btn-primary">
+									<button
+										onClick={this.botonobtenerregistro}
+										type="button"
+										className="btn btn-primary">
 										Registar cuenta
 									</button>
 								</Link>
