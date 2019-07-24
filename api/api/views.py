@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from api.models import Contact, ContactSerializer
+from api.models import User, ContactSerializer
 from rest_framework.permissions import IsAuthenticated
 
 """
@@ -14,11 +14,11 @@ class ContactsView(APIView):
     def get(self, request, contact_id=None):
 
         if contact_id is not None:
-            contact = Contact.objects.get(id=contact_id)
+            contact = User.objects.get(id=contact_id)
             serializer = ContactSerializer(contact, many=False)
             return Response(serializer.data)
         else:
-            contacts = Contact.objects.all()
+            contacts = User.objects.all()
             serializer = ContactSerializer(contacts, many=True)
             return Response(serializer.data)
 
@@ -34,7 +34,7 @@ class ContactsView(APIView):
 
     def delete(self, request, contact_id):
 
-        contact = Contact.objects.get(id=contact_id)
+        contact = User.objects.get(id=contact_id)
         contact.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)

@@ -3,6 +3,7 @@ All your application modules and serializers are going to be declared inside thi
 """
 from rest_framework import serializers
 from django.db import models
+import datetime
 
 """
 Define he Contact Entity into your applcation model
@@ -14,28 +15,28 @@ class User(models.Model):
     email = models.CharField(max_length=150, default='')
 
 class Person(models.Model):
-    fk_user = models.ForeignKey(User)
+    fk_user = models.ForeignKey(User, on_delete=models.CASCADE,)
     name = models.CharField(max_length=50, default='')
-    rut_person = models.IntegerField(max_length=20, default='')
-    birth_date = models.DateField(required=True)
+    rut_person = models.IntegerField(default='')
+    birth_date = models.DateField(default=datetime.date.today)
 
 class Campaign(models.Model):
-    fk_user = models.ForeignKey(User)
+    fk_user = models.ForeignKey(User, on_delete=models.CASCADE,)
     name_camp = models.CharField(max_length=50, default='')
     search_target = models.CharField(max_length=50, default='')
     item_to_search = models.CharField(max_length=150, default='')
-    start_date = models.DateField(required=True)
-    ends_date = models.DateField(required=True)
+    start_date = models.DateField(default=datetime.date.today)
+    ends_date = models.DateField(default=datetime.date.today)
     details = models.CharField(max_length=500, default='')
 
-class Type_of_campaing(models.Model):
+class TypeOfCampaing(models.Model):
     name = models.CharField(max_length=50, default='')
 
-class Campaign_status(models.model):
+class CampaignStatus(models.Model):
     name = models.CharField(max_length=50, default='')
 
 class Results(models.Model):
-    fk_campaign = models.ForeignKey(Campaign)
+    fk_campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE,)
     results = models.CharField(max_length=500, default='')
 
 """
@@ -46,6 +47,6 @@ class ContactSerializer(serializers.ModelSerializer):
 
 
     class Meta:
-        model = Contact
+        model = User
         # what fields to include?
         fields = ('first_name','last_name', 'phone_number', 'email')
