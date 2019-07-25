@@ -22,7 +22,7 @@ class Person(models.Model):
 
 
 class Campaign(models.Model):
-    fk_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    fk_user = models.ForeignKey(User, on_delete=models.CASCADE, default='')
     name_camp = models.CharField(max_length=50, default='')
     search_target = models.CharField(max_length=50, default='')
     item_to_search = models.CharField(max_length=150, default='')
