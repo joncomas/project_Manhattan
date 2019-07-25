@@ -45,10 +45,17 @@ class Results(models.Model):
 The ContactSerializer is where you will specify what properties
 from the ever Contact should be inscuded in the JSON response
 """
-class ContactSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
 
 
     class Meta:
         model = User
         # what fields to include?
         fields = ('first_name','last_name', 'phone_number', 'email')
+
+class CampaignSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Campaign
+        # what fields to include?
+        fields = ('name_camp', 'search_target', 'item_to_search', 'start_date', 'ends_date', 'details')
