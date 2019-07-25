@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from api.models import User, UserSerializer, CampaignSerializer
+from api.models import User, Campaign, UserSerializer, CampaignSerializer
 from rest_framework.permissions import IsAuthenticated
 
 """
@@ -9,6 +9,8 @@ The ContactsView will contain the logic on how to:
  GET, POST, PUT or delete the contacts
 """
 
+
+# Esta clase crea los metodos para las campanias, post, get, put y delete
 class CampaignView(APIView):
     permission_classes = (IsAuthenticated,)
     def post(self, request):
@@ -20,6 +22,17 @@ class CampaignView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def get(self, request, campaign_id=None):
+        if campaign_id is not None:
+            campaign = Campaign.objects.get(id=campaign_id)
+            serializer = CampaignSerializer(campaign, many=False)
+            return Response(serializer.data)
+        else:
+            campaigns = Campaign.objects.all()
+            serializer = CampaignSerializer(campaigns, many=True)
+            return Response(serializer.data)
+            
+# Esta clase crea los metodos para los usuarios, post, get, put y delete
 class UsersView(APIView):
     permission_classes = (IsAuthenticated,)
 
