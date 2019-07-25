@@ -8,19 +8,16 @@ export class CrearCampaña extends React.Component {
 		this.actioncontext = null;
 		this.nombredelacampaña = React.createRef();
 		this.state = {
-			variableparaquenosemeolvidequeexisteelestate: []
+			inputsTotales: {
+				nombrecampaña: "",
+				inlineRadioOptions: ""
+			}
 		};
 	}
-	botonobtenercampaña(e) {
-		const info = {
-			nombrecampaña: e.target.value
-		};
-		console.log(info);
+	botonValidarInfo(e) {
+		console.log("En algún momento, este botón va a validar información.");
 	}
-	handleData(e) {
-		const { name, value } = e.target;
-		console.log(value);
-	}
+
 	render() {
 		return (
 			<Context.Consumer>
@@ -41,8 +38,8 @@ export class CrearCampaña extends React.Component {
 												className="form-control"
 												id="inputnombre"
 												placeholder="Nombre de su campaña"
-												name="nombrecampaña"
-												onChange={e => this.handleData(e)}
+												name="nombrecamp"
+												onChange={e => this.actioncontext.obtenerDataCamp(e)}
 											/>
 										</div>
 										<div className="form-group col-md-12">
@@ -57,6 +54,7 @@ export class CrearCampaña extends React.Component {
 														name="inlineRadioOptions"
 														id="inlineRadio1"
 														value="option1"
+														onChange={e => this.actioncontext.obtenerDataCamp(e)}
 													/>
 													<label className="form-check-label" htmlFor="inlineRadio1">
 														<i>Whatsapp</i>
@@ -90,7 +88,7 @@ export class CrearCampaña extends React.Component {
 									</div>
 									<Link to="/">
 										<button
-											onClick={e => this.botonobtenercampaña(e)}
+											onClick={e => this.botonValidarInfo(e)}
 											type="button"
 											className="btn btn-primary">
 											Registar cuenta

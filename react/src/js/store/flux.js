@@ -1,15 +1,19 @@
 const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
-			demo: []
+			inputsCamp: {
+				nombrecampaña: "",
+				inlineRadioOptions: ""
+			}
 		},
 		actions: {
-			changeColor: (index, color) => {
-				//get the store
+			obtenerDataCamp: evento => {
 				const store = getStore();
-
-				//reset the global store
-				setStore({ demo: demo });
+				const name = evento.target.name;
+				let oldStore = store.inputsCamp;
+				oldStore[name] = evento.target.value;
+				setStore({ inputsCamp: oldStore });
+				console.log(oldStore);
 			}
 		}
 	};
