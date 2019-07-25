@@ -6,12 +6,15 @@ export class CrearCampaña extends React.Component {
 	constructor() {
 		super();
 		this.actioncontext = null;
+		this.storecontext = null;
 		this.nombredelacampaña = React.createRef();
 		this.state = {
 			variableparaquenosemeolvidequeexisteelestate: []
 		};
+		this.botonValidarInfo = this.botonValidarInfo.bind(this);
 	}
 	botonValidarInfo(e) {
+		this.actioncontext.registroCamp(this.storecontext.inputsCamp);
 		console.log("En algún momento, este botón va a validar información.");
 	}
 
@@ -20,6 +23,7 @@ export class CrearCampaña extends React.Component {
 			<Context.Consumer>
 				{({ store, actions }) => {
 					this.actioncontext = actions;
+					this.storecontext = store;
 					return (
 						<div className="container">
 							<div className="text-center mt-5">
@@ -35,7 +39,18 @@ export class CrearCampaña extends React.Component {
 												className="form-control"
 												id="inputnombre"
 												placeholder="Nombre de su campaña"
-												name="nombrecamp"
+												name="name_camp"
+												onChange={e => this.actioncontext.obtenerDataCamp(e)}
+											/>
+										</div>
+										<div className="form-group col-md-12">
+											<label htmlFor="inputnombre">Objeto a buscar</label>
+											<input
+												type="text"
+												className="form-control"
+												id="inputnombre"
+												placeholder="Nombre de su campaña"
+												name="item_to_search"
 												onChange={e => this.actioncontext.obtenerDataCamp(e)}
 											/>
 										</div>
@@ -77,11 +92,23 @@ export class CrearCampaña extends React.Component {
 												<a
 													className="dropdown-item"
 													href="#"
-													name="donde"
+													name="search_target"
 													onChange={e => this.actioncontext.obtenerDataCamp(e)}>
 													Yapo
 												</a>
 											</div>
+										</div>
+										<div className="form-group col-md-12">
+											<label htmlFor="exampleFormControlTextarea1">
+												¿Estás triste? Escribe lo que quieras
+											</label>
+											<textarea
+												className="form-control"
+												id="exampleFormControlTextarea1"
+												rows="3"
+												name="details"
+												onChange={e => this.actioncontext.obtenerDataCamp(e)}
+											/>
 										</div>
 										<div className="form-group col-md-12">
 											<hr />
@@ -92,7 +119,7 @@ export class CrearCampaña extends React.Component {
 											onClick={e => this.botonValidarInfo(e)}
 											type="button"
 											className="btn btn-primary">
-											Registar cuenta
+											Inscribir campaña
 										</button>
 									</Link>
 									<Link to="/">
