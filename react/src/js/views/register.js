@@ -6,30 +6,20 @@ export class Registro extends React.Component {
 	constructor() {
 		super();
 		this.actioncontext = null;
-		this.nombredelapersona = React.createRef();
-		this.nombredeusuario = React.createRef();
-		this.passwordusuario = React.createRef();
-		this.emiliousuario = React.createRef();
-		this.rutusuario = React.createRef();
 		this.state = {
 			variableparaquenosemeolvidequeexisteelestate: []
 		};
-		this.botonobtenerregistro = this.botonobtenerregistro.bind(this);
 	}
 	botonobtenerregistro() {
-		const info = {
-			nombre: this.nombredelapersona.current.value,
-			nick: this.nombredeusuario.current.value,
-			pass: this.passwordusuario.current.value,
-			emilio: this.emiliousuario.current.value,
-			rut: this.rutusuario.current.value
-		};
+		this.actioncontext.agregarUsuario(this.storecontext.inputsRegistro);
+		console.log("Este botón va a validar informacion en algún momento");
 	}
 	render() {
 		return (
 			<Context.Consumer>
 				{({ store, actions }) => {
 					this.actioncontext = actions;
+					this.storecontext = store;
 					return (
 						<div className="container">
 							<form>
@@ -42,7 +32,7 @@ export class Registro extends React.Component {
 											id="inputnombre"
 											placeholder="Nombre"
 											name="nombre"
-											ref={this.nombredelapersona}
+											onChange={e => this.actioncontext.obtenerDataRegistro(e)}
 										/>
 									</div>
 									<div className="form-group col-md-6">
@@ -52,7 +42,8 @@ export class Registro extends React.Component {
 											className="form-control"
 											id="inputnick"
 											placeholder="Nombre de usuario"
-											ref={this.nombredeusuario}
+											name="inputnick"
+											onChange={e => this.actioncontext.obtenerDataRegistro(e)}
 										/>
 									</div>
 									<div className="form-group col-md-6">
@@ -62,7 +53,8 @@ export class Registro extends React.Component {
 											className="form-control"
 											id="inputPassword1"
 											placeholder="Password"
-											ref={this.passwordusuario}
+											name="inputPassword1"
+											onChange={e => this.actioncontext.obtenerDataRegistro(e)}
 										/>
 									</div>
 									<div className="form-group col-md-6">
@@ -81,7 +73,8 @@ export class Registro extends React.Component {
 											className="form-control"
 											id="inputEmail1"
 											placeholder="Ingrese email"
-											ref={this.emiliousuario}
+											name="inputEmail1"
+											onChange={e => this.actioncontext.obtenerDataRegistro(e)}
 										/>
 									</div>
 									<div className="form-group col-md-6">
@@ -101,7 +94,8 @@ export class Registro extends React.Component {
 										className="form-control"
 										id="inputrut"
 										placeholder="12345678-9"
-										ref={this.rutusuario}
+										name="inputrut"
+										onChange={e => this.actioncontext.obtenerDataRegistro(e)}
 									/>
 								</div>
 								<Link to="/login">

@@ -8,10 +8,7 @@ export class CrearCampaña extends React.Component {
 		this.actioncontext = null;
 		this.nombredelacampaña = React.createRef();
 		this.state = {
-			inputsTotales: {
-				nombrecampaña: "",
-				inlineRadioOptions: ""
-			}
+			variableparaquenosemeolvidequeexisteelestate: []
 		};
 	}
 	botonValidarInfo(e) {
@@ -77,7 +74,11 @@ export class CrearCampaña extends React.Component {
 												Donde se realizará
 											</a>
 											<div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-												<a className="dropdown-item" href="#">
+												<a
+													className="dropdown-item"
+													href="#"
+													name="donde"
+													onChange={e => this.actioncontext.obtenerDataCamp(e)}>
 													Yapo
 												</a>
 											</div>

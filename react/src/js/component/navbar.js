@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export class Navbar extends React.Component {
+	limpiarinfo() {
+		localStorage.clear();
+	}
 	render() {
 		return (
 			<nav className="navbar navbar-light bg-light mb-3">
@@ -10,7 +13,9 @@ export class Navbar extends React.Component {
 				</Link>
 				<div className="ml-auto">
 					<Link to="/login">
-						<button className="btn btn-primary">Logout o k ase</button>
+						<button onClick={this.limpiarinfo} className="btn btn-primary">
+							Logout o k ase
+						</button>
 					</Link>
 				</div>
 			</nav>
