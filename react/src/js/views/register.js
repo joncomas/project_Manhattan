@@ -6,12 +6,14 @@ export class Registro extends React.Component {
 	constructor() {
 		super();
 		this.actioncontext = null;
+		this.storecontext = null;
 		this.state = {
 			variableparaquenosemeolvidequeexisteelestate: []
 		};
+		this.botonobtenerregistro = this.botonobtenerregistro.bind(this);
 	}
 	botonobtenerregistro() {
-		this.actioncontext.agregarUsuario(this.storecontext.inputsRegistro);
+		this.actioncontext.registroUsuario(this.storecontext.inputsRegistro);
 		console.log("Este botón va a validar informacion en algún momento");
 	}
 	render() {
@@ -31,7 +33,7 @@ export class Registro extends React.Component {
 											className="form-control"
 											id="inputnombre"
 											placeholder="Nombre"
-											name="nombre"
+											name="first_name"
 											onChange={e => this.actioncontext.obtenerDataRegistro(e)}
 										/>
 									</div>
@@ -42,7 +44,7 @@ export class Registro extends React.Component {
 											className="form-control"
 											id="inputnick"
 											placeholder="Nombre de usuario"
-											name="inputnick"
+											name="username"
 											onChange={e => this.actioncontext.obtenerDataRegistro(e)}
 										/>
 									</div>
@@ -53,7 +55,7 @@ export class Registro extends React.Component {
 											className="form-control"
 											id="inputPassword1"
 											placeholder="Password"
-											name="inputPassword1"
+											name="password"
 											onChange={e => this.actioncontext.obtenerDataRegistro(e)}
 										/>
 									</div>
@@ -73,7 +75,7 @@ export class Registro extends React.Component {
 											className="form-control"
 											id="inputEmail1"
 											placeholder="Ingrese email"
-											name="inputEmail1"
+											name="email"
 											onChange={e => this.actioncontext.obtenerDataRegistro(e)}
 										/>
 									</div>
@@ -90,11 +92,11 @@ export class Registro extends React.Component {
 								<div className="form-group">
 									<label htmlFor="inputrut">Ingrese su rut</label>
 									<input
-										type="number"
+										type="text"
 										className="form-control"
 										id="inputrut"
 										placeholder="12345678-9"
-										name="inputrut"
+										name="rut"
 										onChange={e => this.actioncontext.obtenerDataRegistro(e)}
 									/>
 								</div>

@@ -7,11 +7,11 @@ const getState = ({ getStore, setStore }) => {
 				donde: ""
 			},
 			inputsRegistro: {
-				nombre: "",
-				inputnick: "",
-				inputPassword1: "",
-				inputEmail1: "",
-				inputrut: ""
+				first_name: "",
+				username: "",
+				password: "",
+				email: "",
+				rut: ""
 			}
 		},
 		actions: {
@@ -30,9 +30,9 @@ const getState = ({ getStore, setStore }) => {
 				oldStore[name] = evento.target.value;
 				setStore({ inputsRegistro: oldStore });
 			},
-			agregarUsuario: contacto => {
+			registroUsuario: contacto => {
 				console.log(contacto);
-				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/token/", {
+				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/register/", {
 					method: "Post",
 					body: JSON.stringify(contacto),
 					headers: {
