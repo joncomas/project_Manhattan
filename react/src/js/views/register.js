@@ -41,6 +41,7 @@ export class Registro extends React.Component {
 											className="form-control"
 											id="inputnombre"
 											placeholder="Nombre"
+											name="nombre"
 											ref={this.nombredelapersona}
 										/>
 									</div>
