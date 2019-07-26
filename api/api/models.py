@@ -22,7 +22,7 @@ class Person(models.Model):
 
 
 class Campaign(models.Model):
-    fk_user = models.ForeignKey(User, on_delete=models.CASCADE, default='')
+    fk_user = models.ForeignKey(User, on_delete=models.CASCADE)
     name_camp = models.CharField(max_length=50, default='')
     search_target = models.CharField(max_length=50, default='')
     item_to_search = models.CharField(max_length=150, default='')
@@ -91,5 +91,5 @@ class CampaignSerializer(serializers.ModelSerializer):
     class Meta:
         model = Campaign
         # what fields to include?
-        fields = ('fk_user', 'name_camp', 'search_target',
+        fields = ('id', 'fk_user', 'name_camp', 'search_target',
                   'item_to_search', 'start_date', 'ends_date', 'details')

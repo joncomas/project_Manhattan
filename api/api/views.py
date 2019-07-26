@@ -12,6 +12,7 @@ The ContactsView will contain the logic on how to:
 
 # Esta clase crea los metodos para las campanias, post, get, put y delete
 class Register(APIView):
+
     def post(self, request):
         serializer = UserCreateSerializer(data=request.data)
         if serializer.is_valid():
@@ -22,10 +23,12 @@ class Register(APIView):
 
 
 class CampaignView(APIView):
-    #permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     def post(self, request):
-
-        serializer = CampaignSerializer(data=request.data)
+        print(' XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ', request.user.id)
+        holder = request.data
+        holder['fk_user'] = request.user.id
+        serializer = CampaignSerializer(data=holder)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -41,6 +44,11 @@ class CampaignView(APIView):
             campaigns = Campaign.objects.all()
             serializer = CampaignSerializer(campaigns, many=True)
             return Response(serializer.data)
+
+    def delete(self, request, campaign_id):
+        campaign = Campaign.objects.get(id=campaign_id)
+        campaign.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 # Esta clase crea los metodos para los usuarios, post, get, put y delete
 
