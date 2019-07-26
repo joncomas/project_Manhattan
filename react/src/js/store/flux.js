@@ -68,6 +68,25 @@ const getState = ({ getStore, setStore }) => {
 						console.log(resp);
 					});
 			},
+			eliminacionCamp: contactoid => {
+				const store = getStore();
+				const bearer = "Bearer " + store.InputsToken.access;
+				console.log(bearer);
+				fetch(
+					"https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/users/campaigns/" +
+						contactoid,
+					{
+						method: "DELETE",
+						body: JSON.stringify(),
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: bearer
+						}
+					}
+				)
+					.then(resp => resp.json())
+					.then(resp => {});
+			},
 			registroUsuario: contacto => {
 				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/register/", {
 					method: "Post",

@@ -9,6 +9,11 @@ export class Campana extends React.Component {
 		this.state = {
 			variableparaquenosemeolvidequeexisteelestate: []
 		};
+		this.botonValidarInfo = this.botonValidarInfo.bind(this);
+	}
+	botonValidarInfo(e) {
+		this.actioncontext.eliminacionCamp("5");
+		console.log("En algún momento, este botón va a validar información.");
 	}
 	render() {
 		return (
@@ -21,7 +26,9 @@ export class Campana extends React.Component {
 							<h1>
 								Acá en teoría van las campañas, y cada una tendría un botón para liquidar la campaña
 							</h1>
-							<button className="btn btn-primary">Borrar campaña</button>
+							<button onClick={e => this.botonValidarInfo(e)} className="btn btn-primary">
+								Borrar campaña
+							</button>
 						</div>
 					);
 				}}
