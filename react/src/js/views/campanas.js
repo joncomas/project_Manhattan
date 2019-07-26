@@ -12,7 +12,7 @@ export class Campana extends React.Component {
 		this.botonValidarInfo = this.botonValidarInfo.bind(this);
 	}
 	botonValidarInfo(e) {
-		this.actioncontext.eliminacionCamp("5");
+		this.actioncontext.eliminacionCamp("6");
 		console.log("En algún momento, este botón va a validar información.");
 	}
 	render() {

@@ -83,9 +83,12 @@ const getState = ({ getStore, setStore }) => {
 							Authorization: bearer
 						}
 					}
-				)
-					.then(resp => resp.json())
-					.then(resp => {});
+				).then(resp => {
+					//					Esta línea es para validad el ok, respuesta de servidor.
+					//					if (resp.ok) {
+					//						alert("okkkk");
+					//					}
+				});
 			},
 			registroUsuario: contacto => {
 				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/register/", {
@@ -101,7 +104,7 @@ const getState = ({ getStore, setStore }) => {
 					});
 			},
 			// Abajo me logeo e intentaré obtener el token
-			loginUsuario: contacto => {
+			loginUsuario: (contacto, redirect) => {
 				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/token/", {
 					method: "Post",
 					body: JSON.stringify(contacto),
@@ -114,6 +117,7 @@ const getState = ({ getStore, setStore }) => {
 						setStore({
 							InputsToken: resp
 						});
+						redirect.push("/");
 						console.log(resp);
 					});
 			}

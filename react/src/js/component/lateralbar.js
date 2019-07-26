@@ -18,10 +18,8 @@ export class LateralBar extends React.Component {
 					return (
 						<ul className="nav flex-column">
 							<li className="nav-item">
-								<Link to="/campana">
-									<a className="nav-link active" href="#">
-										Campañas activas
-									</a>
+								<Link to="/campana" className="nav-link active">
+									Campañas activas
 								</Link>
 							</li>
 							<li className="nav-item">
