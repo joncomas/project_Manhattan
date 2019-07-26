@@ -6,15 +6,22 @@ export class HomeReal extends React.Component {
 	constructor() {
 		super();
 		this.actioncontext = null;
+		this.storecontext = null;
 		this.state = {
 			variableparaquenosemeolvidequeexisteelestate: []
 		};
+		this.enviarLoginUsuario = this.enviarLoginUsuario.bind(this);
+	}
+	enviarLoginUsuario() {
+		this.actioncontext.loginUsuario(this.storecontext.inputsLogin);
+		console.log(this.storecontext.inputsLogin);
 	}
 	render() {
 		return (
 			<Context.Consumer>
 				{({ store, actions }) => {
 					this.actioncontext = actions;
+					this.storecontext = store;
 					return (
 						<div className="container">
 							<div className="col-md-8 offset-4">
@@ -28,18 +35,24 @@ export class HomeReal extends React.Component {
 											className="form-control"
 											placeholder="Usuario"
 											id="usuario"
+											name="username"
+											onChange={e => this.actioncontext.obtenerDatosLogin(e)}
 										/>
 										<input
 											type="password"
 											className="form-control"
 											placeholder="Password"
 											id="contraseña"
+											name="password"
+											onChange={e => this.actioncontext.obtenerDatosLogin(e)}
 										/>
 									</div>
 								</div>
 								<div className="row">
 									<Link to="/">
-										<button className="btn btn-primary">Login</button>
+										<button onClick={this.enviarLoginUsuario} className="btn btn-primary">
+											Login
+										</button>
 									</Link>
 									<Link to="/register">
 										<button className="btn btn-primary">Register</button>
