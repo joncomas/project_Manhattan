@@ -22,7 +22,7 @@ class Register(APIView):
 
 
 class CampaignView(APIView):
-    permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated,)
     def post(self, request):
 
         serializer = CampaignSerializer(data=request.data)
