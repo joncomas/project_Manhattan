@@ -7,6 +7,7 @@ import { HomeReal } from "./views/homereal";
 import { Home } from "./views/home";
 import { Registro } from "./views/register";
 import { CrearCampaña } from "./views/crearcampaña";
+import { Campana } from "./views/campanas";
 
 import MasterLayoutRoute from "./layout/template";
 import VistaPrincipalRoute from "./layout/otrotemplate";
@@ -29,6 +30,7 @@ export class Layout extends React.Component {
 						<Switch>
 							<MasterLayoutRoute exact path="/" component={Home} />
 							<MasterLayoutRoute exact path="/crearcampaña" component={CrearCampaña} />
+							<MasterLayoutRoute exact path="/campana" component={Campana} />
 							<VistaPrincipalRoute exact path="/login" component={HomeReal} />
 							<Route exact path="/register" component={Registro} />
 							<Route render={() => <h1>Error 404!</h1>} />

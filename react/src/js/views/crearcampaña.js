@@ -66,7 +66,7 @@ export class CrearCampaña extends React.Component {
 														name="inlineRadioOptions"
 														id="inlineRadio1"
 														value="option1"
-														onChange={e => this.actioncontext.obtenerDataCamp(e)}
+														//onChange={e => this.actioncontext.obtenerDataCamp(e)}
 													/>
 													<label className="form-check-label" htmlFor="inlineRadio1">
 														<i>Whatsapp</i>

@@ -3,10 +3,10 @@ const getState = ({ getStore, setStore }) => {
 		store: {
 			inputsCamp: {
 				name_camp: "",
-				inlineRadioOptions: "",
+				//inlineRadioOptions: "",
 				search_target: "Yapo.cl",
 				details: "",
-				star_date: "2018-04-25",
+				start_date: "2018-04-25",
 				ends_date: "2019-03-14",
 				item_to_search: ""
 			},
