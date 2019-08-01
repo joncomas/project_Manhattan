@@ -2,6 +2,8 @@ import React from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
+import PropTypes from "prop-types";
+
 export class HomeReal extends React.Component {
 	constructor() {
 		super();
@@ -13,7 +15,7 @@ export class HomeReal extends React.Component {
 		this.enviarLoginUsuario = this.enviarLoginUsuario.bind(this);
 	}
 	enviarLoginUsuario() {
-		this.actioncontext.loginUsuario(this.storecontext.inputsLogin);
+		this.actioncontext.loginUsuario(this.storecontext.inputsLogin, this.props.history);
 		console.log(this.storecontext.inputsLogin);
 	}
 	render() {
@@ -49,11 +51,11 @@ export class HomeReal extends React.Component {
 									</div>
 								</div>
 								<div className="row">
-									<Link to="/">
+									<a>
 										<button onClick={this.enviarLoginUsuario} className="btn btn-primary">
 											Login
 										</button>
-									</Link>
+									</a>
 									<Link to="/register">
 										<button className="btn btn-primary">Register</button>
 									</Link>
@@ -66,3 +68,7 @@ export class HomeReal extends React.Component {
 		);
 	}
 }
+
+HomeReal.propTypes = {
+	history: PropTypes.any
+};

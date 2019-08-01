@@ -3,10 +3,10 @@ const getState = ({ getStore, setStore }) => {
 		store: {
 			inputsCamp: {
 				name_camp: "",
-				inlineRadioOptions: "",
+				//inlineRadioOptions: "",
 				search_target: "Yapo.cl",
 				details: "",
-				star_date: "2018-04-25",
+				start_date: "2018-04-25",
 				ends_date: "2019-03-14",
 				item_to_search: ""
 			},
@@ -68,6 +68,28 @@ const getState = ({ getStore, setStore }) => {
 						console.log(resp);
 					});
 			},
+			eliminacionCamp: contactoid => {
+				const store = getStore();
+				const bearer = "Bearer " + store.InputsToken.access;
+				console.log(bearer);
+				fetch(
+					"https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/users/campaigns/" +
+						contactoid,
+					{
+						method: "DELETE",
+						body: JSON.stringify(),
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: bearer
+						}
+					}
+				).then(resp => {
+					//					Esta línea es para validad el ok, respuesta de servidor.
+					//					if (resp.ok) {
+					//						alert("okkkk");
+					//					}
+				});
+			},
 			registroUsuario: contacto => {
 				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/register/", {
 					method: "Post",
@@ -82,7 +104,7 @@ const getState = ({ getStore, setStore }) => {
 					});
 			},
 			// Abajo me logeo e intentaré obtener el token
-			loginUsuario: contacto => {
+			loginUsuario: (contacto, redirect) => {
 				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/token/", {
 					method: "Post",
 					body: JSON.stringify(contacto),
@@ -95,6 +117,7 @@ const getState = ({ getStore, setStore }) => {
 						setStore({
 							InputsToken: resp
 						});
+						redirect.push("/");
 						console.log(resp);
 					});
 			}
