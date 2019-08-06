@@ -1,21 +1,30 @@
 import React from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export class Registro extends React.Component {
 	constructor() {
 		super();
+		this.passwordrep = null;
 		this.actioncontext = null;
 		this.storecontext = null;
 		this.state = {
 			variableparaquenosemeolvidequeexisteelestate: []
 		};
-		this.botonobtenerregistro = this.botonobtenerregistro.bind(this);
 	}
-	botonobtenerregistro() {
-		this.actioncontext.registroUsuario(this.storecontext.inputsRegistro);
-		console.log("Este botón va a validar informacion en algún momento");
-	}
+	handleSubmit = e => {
+		e.preventDefault();
+		if (this.storecontext.inputsRegistro.password !== this.storecontext.inputsValidador.passwordrep) {
+			alert("Escriba bien su contaseña, no coinciden");
+			return;
+		}
+		if (this.storecontext.inputsRegistro.email !== this.storecontext.inputsValidador.emailrep) {
+			alert("Escriba bien su contaseña, no coinciden");
+			return;
+		}
+		this.actioncontext.registroUsuario(this.storecontext.inputsRegistro, this.props.history);
+	};
 	render() {
 		return (
 			<Context.Consumer>
@@ -24,7 +33,7 @@ export class Registro extends React.Component {
 					this.storecontext = store;
 					return (
 						<div className="container">
-							<form>
+							<form onSubmit={this.handleSubmit}>
 								<div className="form-row">
 									<div className="form-group col-md-6">
 										<label htmlFor="inputnombre">Nombre</label>
@@ -35,6 +44,8 @@ export class Registro extends React.Component {
 											placeholder="Nombre"
 											name="first_name"
 											onChange={e => this.actioncontext.obtenerDataRegistro(e)}
+											required
+											maxLength="25"
 										/>
 									</div>
 									<div className="form-group col-md-6">
@@ -46,6 +57,8 @@ export class Registro extends React.Component {
 											placeholder="Nombre de usuario"
 											name="username"
 											onChange={e => this.actioncontext.obtenerDataRegistro(e)}
+											required
+											maxLength="25"
 										/>
 									</div>
 									<div className="form-group col-md-6">
@@ -57,6 +70,7 @@ export class Registro extends React.Component {
 											placeholder="Password"
 											name="password"
 											onChange={e => this.actioncontext.obtenerDataRegistro(e)}
+											required
 										/>
 									</div>
 									<div className="form-group col-md-6">
@@ -66,6 +80,9 @@ export class Registro extends React.Component {
 											className="form-control"
 											id="inputPassword2"
 											placeholder="Password"
+											name="passwordrep"
+											onChange={e => this.actioncontext.obtenerDataRegistroDos(e)}
+											required
 										/>
 									</div>
 									<div className="form-group col-md-6">
@@ -77,6 +94,7 @@ export class Registro extends React.Component {
 											placeholder="Ingrese email"
 											name="email"
 											onChange={e => this.actioncontext.obtenerDataRegistro(e)}
+											required
 										/>
 									</div>
 									<div className="form-group col-md-6">
@@ -86,6 +104,9 @@ export class Registro extends React.Component {
 											className="form-control"
 											id="inputEmail2"
 											placeholder="Ingrese email"
+											name="emailrep"
+											onChange={e => this.actioncontext.obtenerDataRegistroDos(e)}
+											required
 										/>
 									</div>
 								</div>
@@ -100,14 +121,14 @@ export class Registro extends React.Component {
 										onChange={e => this.actioncontext.obtenerDataRegistro(e)}
 									/>
 								</div>
-								<Link to="/login">
-									<button
-										onClick={this.botonobtenerregistro}
-										type="button"
-										className="btn btn-primary">
-										Registar cuenta
-									</button>
-								</Link>
+								{/*
+								<button onClick={this.botonobtenerregistro} type="button" className="btn btn-primary">
+									Registar cuenta
+								</button>
+								*/}
+								<button type="submit" className="btn btn-primary">
+									Registar cuenta
+								</button>
 								<Link to="/login">
 									<button className="btn btn-primary">Cancelar</button>
 								</Link>
@@ -119,3 +140,7 @@ export class Registro extends React.Component {
 		);
 	}
 }
+
+Registro.propTypes = {
+	history: PropTypes.any
+};

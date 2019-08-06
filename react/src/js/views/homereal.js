@@ -1,7 +1,6 @@
 import React from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-
 import PropTypes from "prop-types";
 
 export class HomeReal extends React.Component {

@@ -8,7 +8,7 @@ export class Home extends React.Component {
 		return (
 			<div className="container">
 				<div className="row">
-					<h1>Acá irá el contador</h1>
+					<h1>Historial de búsqueda</h1>
 				</div>
 				<div className="col-md-12">
 					<Link to="/crearcampaña">

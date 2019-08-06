@@ -17,6 +17,10 @@ const getState = ({ getStore, setStore }) => {
 				email: "",
 				rut: ""
 			},
+			inputsValidador: {
+				passwordrep: "",
+				emailrep: ""
+			},
 			inputsLogin: {
 				username: "",
 				password: ""
@@ -44,6 +48,13 @@ const getState = ({ getStore, setStore }) => {
 				oldStore[name] = evento.target.value;
 				setStore({ inputsRegistro: oldStore });
 			},
+			obtenerDataRegistroDos: evento => {
+				const store = getStore();
+				const name = evento.target.name;
+				let oldStore = store.inputsRegistro;
+				oldStore[name] = evento.target.value;
+				setStore({ inputsValidador: oldStore });
+			},
 			obtenerDatosLogin: evento => {
 				const store = getStore();
 				const name = evento.target.name;
@@ -54,7 +65,6 @@ const getState = ({ getStore, setStore }) => {
 			registroCamp: contacto => {
 				const store = getStore();
 				const bearer = "Bearer " + store.InputsToken.access;
-				console.log(bearer);
 				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/users/campaigns/", {
 					method: "Post",
 					body: JSON.stringify(contacto),
@@ -65,13 +75,12 @@ const getState = ({ getStore, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(resp => {
-						console.log(resp);
+						//console.log(resp);
 					});
 			},
 			eliminacionCamp: contactoid => {
 				const store = getStore();
 				const bearer = "Bearer " + store.InputsToken.access;
-				console.log(bearer);
 				fetch(
 					"https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/users/campaigns/" +
 						contactoid,
@@ -90,7 +99,8 @@ const getState = ({ getStore, setStore }) => {
 					//					}
 				});
 			},
-			registroUsuario: contacto => {
+			registroUsuario: (contacto, redirect) => {
+				redirect.push("/login");
 				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/register/", {
 					method: "Post",
 					body: JSON.stringify(contacto),
@@ -100,7 +110,7 @@ const getState = ({ getStore, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(resp => {
-						console.log(resp);
+						//console.log(resp);
 					});
 			},
 			// Abajo me logeo e intentaré obtener el token
@@ -118,7 +128,7 @@ const getState = ({ getStore, setStore }) => {
 							InputsToken: resp
 						});
 						redirect.push("/");
-						console.log(resp);
+						//console.log(resp);
 					});
 			}
 		}
