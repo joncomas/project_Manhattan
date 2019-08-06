@@ -29,7 +29,9 @@ fs.readFile(__dirname + '/data.json', (err, data) => {
 
     rp(target)
         .then(function(html) {
-            console.log($('.prj-phones-item', html).text());
+
+            goldMine = $('.prj-phones-item', html).text()
+            console.log(goldMine.replace(/\s+/g, ''));
             //console.log($('.bday', html).text());
         })
         .catch(function(err) {
