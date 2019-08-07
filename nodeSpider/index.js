@@ -18,35 +18,45 @@ search.getListURL().then((res) => {
 });
 */
 
+
+
 fs.readFile(__dirname + '/data.json', (err, data) => {
 
+    concatUrlsList = [];
     phonesList = {
         phoneNumber: 0,
         url: ''
-    }
+    };
+    totalList = [];
+
 
     if (err) console.log('aqui ', err);
-        let obj = JSON.parse(data);
-        dataStringified = data.toString();
-        let publication = obj.lista[0]
+    let obj = JSON.parse(data);
+    //dataStringified = data.toString();
+    //console.log(obj.lista);
+    for (i = 0; i < obj.lista.length; i++) {
+        let publication = obj.lista[i]
         const target = url + publication;
+        concatUrlsList.push(target)
+        //console.log(concatUrlsList)
+    }
 
-
-    rp(target)
-        .then(function(html) {
-
-            goldMine = $('.prj-phones-item', html).text()
-            catchedphoneNumber = goldMine.replace(/\s+/g, '');
-            //console.log($('.bday', html).text());
-            phonesList.phoneNumber = catchedphoneNumber;
-            phonesList.url = target
-            console.log(phonesList)
-        })
-        .catch(function(err) {
-            //handle error
-
+    for (j = 0; j < concatUrlsList.length; j++) {
+        rp(concatUrlsList[j])
+            .then(function(html) {
+                goldMine = $('.prj-phones-item', html).text()
+                catchedPhoneNumber = goldMine.replace(/\s+/g, '');
+                console.log('Telefonos', catchedPhoneNumber)
+                if(catchedPhoneNumber != ''){
+                    totalList.push(catchedPhoneNumber)
+                    return totalList
+                }
+            })
+            .catch(function(err) {
+                //handle error
         });
+    }
+    console.log(totalList)
 });
-
 
 
