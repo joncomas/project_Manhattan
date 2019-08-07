@@ -10,6 +10,8 @@ const getState = ({ getStore, setStore }) => {
 				ends_date: "2019-03-14",
 				item_to_search: ""
 			},
+			respCamp: [],
+			respUrlCamp: [],
 			inputsRegistro: {
 				first_name: "",
 				username: "",
@@ -75,10 +77,30 @@ const getState = ({ getStore, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(resp => {
-						//console.log(resp);
+						//console.log("Este console log, se muestra cuando se efectua el registro de camp", resp);
 					});
 			},
-			eliminacionCamp: contactoid => {
+			obtenerCampanas: () => {
+				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/users/campaigns/")
+					.then(resp => resp.json())
+					.then(resp => {
+						setStore({
+							respCamp: resp
+						});
+						//console.log("Lo que trae el fetch get de campañas", resp);
+					});
+			},
+			obtenerUrlCampanas: () => {
+				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/users/campaigns/results/")
+					.then(resp => resp.json())
+					.then(resp => {
+						setStore({
+							respUrlCamp: resp
+						});
+						console.log("Lo que trae el fetch get de las URL de campañas", resp);
+					});
+			},
+			eliminacionCamp: (contactoid, redirect) => {
 				const store = getStore();
 				const bearer = "Bearer " + store.InputsToken.access;
 				fetch(
@@ -94,9 +116,10 @@ const getState = ({ getStore, setStore }) => {
 					}
 				).then(resp => {
 					//					Esta línea es para validad el ok, respuesta de servidor.
-					//					if (resp.ok) {
-					//						alert("okkkk");
-					//					}
+					if (resp.ok) {
+						alert("La campaña ha sido eliminada con exito");
+						redirect.push("/campana");
+					}
 				});
 			},
 			registroUsuario: (contacto, redirect) => {
@@ -128,7 +151,7 @@ const getState = ({ getStore, setStore }) => {
 							InputsToken: resp
 						});
 						redirect.push("/");
-						//console.log(resp);
+						console.log("Acá debería estar todo lo que responde el fetch del login", resp);
 					});
 			}
 		}
