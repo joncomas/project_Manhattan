@@ -29,7 +29,6 @@ fs.readFile(__dirname + '/data.json', (err, data) => {
         let obj = JSON.parse(data);
         dataStringified = data.toString();
         let publication = obj.lista[0]
-        fullUrl = url + publication
         const target = url + publication;
 
 
