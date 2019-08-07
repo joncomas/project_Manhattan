@@ -19,24 +19,35 @@ search.getListURL().then((res) => {
 */
 
 fs.readFile(__dirname + '/data.json', (err, data) => {
+
+    phonesList = {
+        phoneNumber: 0,
+        url: ''
+    }
+
     if (err) console.log('aqui ', err);
-    let obj = JSON.parse(data);
-    dataStringified = data.toString();
-    let publication = obj.lista[0]
-    fullUrl = url + publication
-    const target = url + publication;
+        let obj = JSON.parse(data);
+        dataStringified = data.toString();
+        let publication = obj.lista[0]
+        fullUrl = url + publication
+        const target = url + publication;
 
 
     rp(target)
         .then(function(html) {
 
             goldMine = $('.prj-phones-item', html).text()
-            console.log(goldMine.replace(/\s+/g, ''));
+            catchedphoneNumber = goldMine.replace(/\s+/g, '');
             //console.log($('.bday', html).text());
+            phonesList.phoneNumber = catchedphoneNumber;
+            phonesList.url = target
+            console.log(phonesList)
         })
         .catch(function(err) {
             //handle error
+
         });
 });
+
 
 
