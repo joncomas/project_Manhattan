@@ -46,12 +46,6 @@ class Results(models.Model):
     results = models.CharField(max_length=500, default='')
 
 
-"""
-The ContactSerializer is where you will specify what properties
-from the ever Contact should be inscuded in the JSON response
-"""
-
-
 class UserCreateSerializer(serializers.ModelSerializer):
     email = serializers.CharField()
     password = serializers.CharField()
