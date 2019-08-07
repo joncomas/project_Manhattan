@@ -1,5 +1,3 @@
-var express = require('express')
-var app = express()
 const sqlite3 = require('sqlite3').verbose();
 const save = require('save-file');
 const search = require('./search');
@@ -58,6 +56,8 @@ fs.readFile(__dirname + '/data.json', (err, data) => {
 });
 
 */
+
+
 
 
                 testing = ['2345678949484', '23456543456'];
