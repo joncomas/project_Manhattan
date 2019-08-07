@@ -83,7 +83,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         # what fields to include?
-        fields = ('username', 'pass_word')
+        fields = ('id', 'username', 'password')
 
 
 class CampaignSerializer(serializers.ModelSerializer):
@@ -93,3 +93,10 @@ class CampaignSerializer(serializers.ModelSerializer):
         # what fields to include?
         fields = ('id', 'fk_user', 'name_camp', 'search_target',
                   'item_to_search', 'start_date', 'ends_date', 'details')
+
+class ResultsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Results
+        # what fields to include?
+        fields = ('id', 'fk_campaign', 'results')
