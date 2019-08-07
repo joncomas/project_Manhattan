@@ -9,8 +9,14 @@ const MasterLayout = ({ children }) => (
 		<header>
 			<Navbar />
 		</header>
-		<LateralBar />
-		<main>{children}</main>
+		<div className="row">
+			<div className="col-sm-3">
+				<LateralBar />
+			</div>
+			<div className="col-sm-9">
+				<main>{children}</main>
+			</div>
+		</div>
 	</div>
 );
 

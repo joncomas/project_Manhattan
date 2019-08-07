@@ -44,12 +44,12 @@ export class CrearCampaña extends React.Component {
 											/>
 										</div>
 										<div className="form-group col-md-12">
-											<label htmlFor="inputnombre">Objeto a buscar</label>
+											<label htmlFor="inputnombre">Ingrese la URL a buscar</label>
 											<input
 												type="text"
 												className="form-control"
 												id="inputnombre"
-												placeholder="Nombre de su campaña"
+												placeholder="https://www.algo.algo"
 												name="item_to_search"
 												onChange={e => this.actioncontext.obtenerDataCamp(e)}
 											/>

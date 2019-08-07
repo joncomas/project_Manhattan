@@ -1,7 +1,6 @@
 import React from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-
 import PropTypes from "prop-types";
 
 export class HomeReal extends React.Component {
@@ -16,7 +15,7 @@ export class HomeReal extends React.Component {
 	}
 	enviarLoginUsuario() {
 		this.actioncontext.loginUsuario(this.storecontext.inputsLogin, this.props.history);
-		console.log(this.storecontext.inputsLogin);
+		console.log("Envío de login", this.storecontext.inputsLogin);
 	}
 	render() {
 		return (
