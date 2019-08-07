@@ -2,11 +2,11 @@ import React from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { validate, clean, format } from "rut.js";
 
 export class Registro extends React.Component {
 	constructor() {
 		super();
-		this.passwordrep = null;
 		this.actioncontext = null;
 		this.storecontext = null;
 		this.state = {
@@ -21,6 +21,10 @@ export class Registro extends React.Component {
 		}
 		if (this.storecontext.inputsRegistro.email !== this.storecontext.inputsValidador.emailrep) {
 			alert("Escriba bien su contaseña, no coinciden");
+			return;
+		}
+		if (validate(this.storecontext.inputsRegistro.rut) === false) {
+			alert("Escriba un rut válido");
 			return;
 		}
 		this.actioncontext.registroUsuario(this.storecontext.inputsRegistro, this.props.history);

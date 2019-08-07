@@ -13,7 +13,7 @@ export class Campana extends React.Component {
 	}
 	botonValidarInfo(e) {
 		this.actioncontext.eliminacionCamp("10");
-		console.log("En algún momento, este botón va a validar información.");
+		console.log("En algún momento, este botón va a eliminar la campaña");
 	}
 	render() {
 		return (
