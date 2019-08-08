@@ -86,6 +86,6 @@ class UsersView(APIView):
 class ResultsView(APIView):
     def get(self, request, campaign_id=None):
         if campaign_id is not None:
-            results = Results.objects.filter(fk_campaign_id = campaign_id)
+            results = Results.objects.filter(fk_campaign=campaign_id)
             serializer = ResultsSerializer(results, many=True)
             return Response(serializer.data)
