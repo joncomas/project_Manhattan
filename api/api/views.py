@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from api.models import User, Campaign, UserSerializer, CampaignSerializer, UserCreateSerializer
+from api.models import Results, User, Campaign, UserSerializer, CampaignSerializer, UserCreateSerializer, ResultsSerializer
 from rest_framework.permissions import IsAuthenticated
 
 """
@@ -23,7 +23,7 @@ class Register(APIView):
 
 
 class CampaignView(APIView):
-    permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated,)
     def post(self, request):
         print(' XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ', request.user.id)
         holder = request.data
@@ -54,7 +54,7 @@ class CampaignView(APIView):
 
 
 class UsersView(APIView):
-    permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated,)
 
     def get(self, request, user_id=None):
 
@@ -82,3 +82,10 @@ class UsersView(APIView):
         user.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class ResultsView(APIView):
+    def get(self, request, campaign_id=None):
+        if campaign_id is not None:
+            results = Results.objects.filter(fk_campaign_id = campaign_id)
+            serializer = ResultsSerializer(results, many=True)
+            return Response(serializer.data)

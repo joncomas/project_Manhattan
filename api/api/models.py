@@ -46,12 +46,6 @@ class Results(models.Model):
     results = models.CharField(max_length=500, default='')
 
 
-"""
-The ContactSerializer is where you will specify what properties
-from the ever Contact should be inscuded in the JSON response
-"""
-
-
 class UserCreateSerializer(serializers.ModelSerializer):
     email = serializers.CharField()
     password = serializers.CharField()
@@ -83,7 +77,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         # what fields to include?
-        fields = ('username', 'pass_word')
+        fields = ('id', 'username', 'password')
 
 
 class CampaignSerializer(serializers.ModelSerializer):
@@ -93,3 +87,10 @@ class CampaignSerializer(serializers.ModelSerializer):
         # what fields to include?
         fields = ('id', 'fk_user', 'name_camp', 'search_target',
                   'item_to_search', 'start_date', 'ends_date', 'details')
+
+class ResultsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Results
+        # what fields to include?
+        fields = ('fk_campaign_id', 'results')
