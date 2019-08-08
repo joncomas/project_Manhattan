@@ -1,3 +1,4 @@
+const sqlite3 = require('sqlite3').verbose();
 const save = require('save-file');
 const search = require('./search');
 const getter = require('request-promise');
@@ -18,8 +19,7 @@ search.getListURL().then((res) => {
 });
 */
 
-
-
+/*
 fs.readFile(__dirname + '/data.json', (err, data) => {
 
     concatUrlsList = [];
@@ -41,22 +41,52 @@ fs.readFile(__dirname + '/data.json', (err, data) => {
         //console.log(concatUrlsList)
     }
 
+
     for (j = 0; j < concatUrlsList.length; j++) {
         rp(concatUrlsList[j])
             .then(function(html) {
                 goldMine = $('.prj-phones-item', html).text()
                 catchedPhoneNumber = goldMine.replace(/\s+/g, '');
-                console.log('Telefonos', catchedPhoneNumber)
-                if(catchedPhoneNumber != ''){
-                    totalList.push(catchedPhoneNumber)
-                    return totalList
-                }
+
             })
             .catch(function(err) {
                 //handle error
         });
     }
-    console.log(totalList)
 });
 
+*/
 
+
+
+
+                testing = ['2345678949484', '23456543456'];
+
+                // open database in memory
+                    let db = new sqlite3.Database('../api/db.sqlite3');
+                    // construct the insert statement with multiple placeholders
+                    // based on the number of rows
+                    // let resultados = testing.map((phones) => '(?)').join(',');
+                    testing.forEach((nummer) => {
+                        let sql = 'INSERT INTO api_results (results, fk_campaign_id) VALUES (' + nummer + ', 13);';
+
+                                db.run(sql, function(err) {
+                            if (err) {
+                                return console.error(err.message);
+                            }
+                            console.log(`Rows inserted ${this.changes}`);
+                        });
+
+                        let sqlCheckData = "SELECT * FROM api_results ";
+                        db.all(sqlCheckData, function(err, rows) {
+                            console.log('QUERY ', err,rows)
+                        });
+
+
+                    })
+
+
+                    //let sql = 'DELETE FROM api_results; VACUUM;';
+
+                    // close the database connection
+                    db.close();
