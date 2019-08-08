@@ -93,4 +93,4 @@ class ResultsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Results
         # what fields to include?
-        fields = ('id', 'fk_campaign_id', 'results')
+        fields = ('fk_campaign_id', 'results')
