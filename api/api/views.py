@@ -12,7 +12,6 @@ The ContactsView will contain the logic on how to:
 
 # Esta clase crea los metodos para las campanias, post, get, put y delete
 class Register(APIView):
-
     def post(self, request):
         serializer = UserCreateSerializer(data=request.data)
         if serializer.is_valid():
