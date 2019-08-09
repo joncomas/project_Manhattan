@@ -11,7 +11,7 @@ Define he Contact Entity into your applcation model
 
 
 class User(AbstractUser):
-    rut = models.IntegerField(default='')
+    rut = models.CharField(max_length=50, default='')
 
 
 class Person(models.Model):
