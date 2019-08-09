@@ -91,7 +91,7 @@ const getState = ({ getStore, setStore }) => {
 					});
 			},
 			obtenerUrlCampanas: () => {
-				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/users/campaigns/results/")
+				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/results/12")
 					.then(resp => resp.json())
 					.then(resp => {
 						setStore({
