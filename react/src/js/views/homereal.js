@@ -11,12 +11,11 @@ export class HomeReal extends React.Component {
 		this.state = {
 			variableparaquenosemeolvidequeexisteelestate: []
 		};
-		this.enviarLoginUsuario = this.enviarLoginUsuario.bind(this);
 	}
-	enviarLoginUsuario() {
+	handleSubmit = e => {
+		e.preventDefault();
 		this.actioncontext.loginUsuario(this.storecontext.inputsLogin, this.props.history);
-		//console.log("Envío de login", this.storecontext.inputsLogin);
-	}
+	};
 	render() {
 		return (
 			<Context.Consumer>
@@ -25,7 +24,7 @@ export class HomeReal extends React.Component {
 					this.storecontext = store;
 					return (
 						<div className="container">
-							<div className="col-md-8 offset-4">
+							<form onSubmit={this.handleSubmit} className="col-md-8 offset-4">
 								<div className="row">
 									<h1>LOGIN</h1>
 								</div>
@@ -38,6 +37,8 @@ export class HomeReal extends React.Component {
 											id="usuario"
 											name="username"
 											onChange={e => this.actioncontext.obtenerDatosLogin(e)}
+											onSubmit={this.handleSubmit}
+											required
 										/>
 										<input
 											type="password"
@@ -46,20 +47,25 @@ export class HomeReal extends React.Component {
 											id="contraseña"
 											name="password"
 											onChange={e => this.actioncontext.obtenerDatosLogin(e)}
+											onSubmit={this.handleSubmit}
+											required
 										/>
 									</div>
 								</div>
 								<div className="row">
 									<a>
-										<button onClick={this.enviarLoginUsuario} className="btn btn-primary">
+										<button type="submit" className="btn btn-primary">
 											Login
 										</button>
+										{/*<button onClick={this.enviarLoginUsuario} className="btn btn-primary">
+										//	Login
+										</button>*/}
 									</a>
 									<Link to="/register">
 										<button className="btn btn-primary">Register</button>
 									</Link>
 								</div>
-							</div>
+							</form>
 						</div>
 					);
 				}}

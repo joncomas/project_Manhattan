@@ -13,8 +13,10 @@ export class Navbar extends React.Component {
 		this.limpiarinfo = this.limpiarinfo.bind(this);
 	}
 	limpiarinfo() {
-		localStorage.clear();
+		//console.log("Este console va antes que -se borren- las weas", this.storecontext.InputsToken);
+		//console.log("Antes que se borre", localStorage);
 		this.actioncontext.clean();
+		//console.log("Despues que se borra", localStorage);
 	}
 	render() {
 		return (
@@ -28,11 +30,9 @@ export class Navbar extends React.Component {
 								<span className="navbar-brand mb-0 h1">LEMR</span>
 							</Link>
 							<div className="ml-auto">
-								<Link to="/login">
-									<button onClick={this.limpiarinfo} className="btn btn-primary">
-										Logout o k ase
-									</button>
-								</Link>
+								<button onClick={this.limpiarinfo} className="btn btn-primary">
+									Logout o k ase
+								</button>
 							</div>
 						</nav>
 					);
