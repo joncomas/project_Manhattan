@@ -93,6 +93,7 @@ class UsersView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class ResultsView(APIView):
+    permission_classes = (IsAuthenticated,)
     def get(self, request, campaign_id=None):
         if campaign_id is not None:
             results = Results.objects.filter(fk_campaign=campaign_id)
