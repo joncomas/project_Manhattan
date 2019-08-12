@@ -23,9 +23,9 @@ export class LateralBar extends React.Component {
 								</Link>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link" href="#">
-									Link
-								</a>
+								<Link to="/crearcampaña" className="nav-link active">
+									Crear campaña
+								</Link>
 							</li>
 							<li className="nav-item">
 								<div className="dropdown">

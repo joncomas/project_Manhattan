@@ -11,9 +11,9 @@ export class UrlCamp extends React.Component {
 			variableparaquenosemeolvidequeexisteelestate: []
 		};
 	}
-	botonValidarFetch(e) {
-		this.actioncontext.obtenerUrlCampanas(this.storecontext.inputsCamp);
-		console.log("En algún momento, este botón va a validar información.");
+	componentDidMount() {
+		this.actioncontext.obtenerUrlCampanas();
+		//console.log("Este console verifica el didmount que el result se hizo bien", this.storecontext.respUrlCamp);
 	}
 	render() {
 		return (
@@ -21,11 +21,19 @@ export class UrlCamp extends React.Component {
 				{({ store, actions }) => {
 					this.actioncontext = actions;
 					this.storecontext = store;
+					const resultados = store.respUrlCamp.map((result, index) => {
+						return (
+							<ol className="row" key={index}>
+								<li className="col-sm-6">
+									<p>{result.results}</p>
+								</li>
+							</ol>
+						);
+					});
 					return (
 						<div>
-							<button onClick={e => this.botonValidarFetch(e)} className="btn btn-primary">
-								Ola k ase
-							</button>
+							<h1>Resultados</h1>
+							{resultados}
 							<Link to="/campana">
 								<button className="btn btn-primary">Volver</button>
 							</Link>

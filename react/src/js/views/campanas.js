@@ -54,7 +54,7 @@ export class Campana extends React.Component {
 					});
 					return (
 						<div>
-							<h1>Detalle de sus campañas</h1>
+							<h1>Campañas activas</h1>
 							{campanitas}
 						</div>
 					);

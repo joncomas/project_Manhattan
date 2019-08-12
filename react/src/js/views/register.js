@@ -28,6 +28,7 @@ export class Registro extends React.Component {
 			return;
 		}
 		this.actioncontext.registroUsuario(this.storecontext.inputsRegistro, this.props.history);
+		alert("Su usuario ha sido creado con éxito");
 	};
 	render() {
 		return (

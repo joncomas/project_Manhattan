@@ -15,7 +15,7 @@ export class CrearCampaña extends React.Component {
 	}
 	botonValidarInfo(e) {
 		this.actioncontext.registroCamp(this.storecontext.inputsCamp);
-		console.log("En algún momento, este botón va a validar información.");
+		//console.log("En algún momento, este botón va a validar información.");
 	}
 
 	render() {

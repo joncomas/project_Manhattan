@@ -43,7 +43,7 @@ export class Home extends React.Component {
 						<div className="container">
 							<div className="row">
 								<div className="col-md-8">
-									<h1>Resumen</h1>
+									<h1>Últimas campaña creada</h1>
 								</div>
 								<div className="col-md-4">
 									<Link to="/crearcampaña">
@@ -51,6 +51,12 @@ export class Home extends React.Component {
 									</Link>
 								</div>
 								<div className="col-md-12">{campanitasres}</div>
+								<div>
+									<p>
+										LEMR consiste en crear campañas para obtener resultados. Siga las siguientes
+										instrucciones si tiene dudas.
+									</p>
+								</div>
 							</div>
 						</div>
 					);
