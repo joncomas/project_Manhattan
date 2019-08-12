@@ -19,4 +19,5 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('results/<int:campaign_id>', views.ResultsView.as_view(), name='all-results'),
+    path('test/', views.RequestPuntoUser.as_view(), name='requestUser'),
 ]
