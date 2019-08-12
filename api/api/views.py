@@ -22,7 +22,7 @@ class Register(APIView):
 
 
 class CampaignView(APIView):
-    #permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     def post(self, request):
         print(' XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ', request.user.id)
         holder = request.data
@@ -53,7 +53,7 @@ class CampaignView(APIView):
 
 
 class UsersView(APIView):
-    #permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, user_id=None):
 

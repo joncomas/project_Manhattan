@@ -15,12 +15,7 @@ const fs = require('fs');
 
 phoneGrabber.getAll((resp) => {
     console.log('aqui esta completo', resp);
-    dbWritter.queryAll(resp);
+    dbWritter.queryAll((resp) => {
+        console.log('por aqui esta completo', resp)
+    });
 });
-
-
-
-
-
-
-
