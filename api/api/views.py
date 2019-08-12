@@ -3,11 +3,21 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from api.models import Results, User, Campaign, UserSerializer, CampaignSerializer, UserCreateSerializer, ResultsSerializer
 from rest_framework.permissions import IsAuthenticated
+from django.http import JsonResponse
 
 """
 The ContactsView will contain the logic on how to:
  GET, POST, PUT or delete the contacts
 """
+
+#Aqui se muestra que contiene request.User
+class RequestPuntoUser(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request):
+        current_user = request.user
+        return Response(current_user.id)
+
+
 
 
 # Esta clase crea los metodos para las campanias, post, get, put y delete
@@ -22,9 +32,9 @@ class Register(APIView):
 
 
 class CampaignView(APIView):
-    #permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     def post(self, request):
-        print(' XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ', request.user.id)
+        #print(' XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ', request.user.id)
         holder = request.data
         holder['fk_user'] = request.user.id
         serializer = CampaignSerializer(data=holder)
@@ -35,12 +45,12 @@ class CampaignView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, campaign_id=None):
-        if campaign_id is not None:
-            campaign = Campaign.objects.get(id=campaign_id)
+        if  campaign_id is not None:
+            campaign = Campaign.objects.filter(fk_user=request.user.id)
             serializer = CampaignSerializer(campaign, many=False)
             return Response(serializer.data)
         else:
-            campaigns = Campaign.objects.all()
+            campaigns = Campaign.objects.filter(fk_user=request.user.id)
             serializer = CampaignSerializer(campaigns, many=True)
             return Response(serializer.data)
 
@@ -53,7 +63,7 @@ class CampaignView(APIView):
 
 
 class UsersView(APIView):
-    #permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, user_id=None):
 
