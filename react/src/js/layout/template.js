@@ -10,6 +10,7 @@ const MasterLayout = ({ children }) => {
 		<Context.Consumer>
 			{({ store, actions }) => {
 				{
+					console.log(store.InputsToken);
 					return Object.keys(store.InputsToken).length === 0 ? (
 						<Redirect to="/login" />
 					) : (

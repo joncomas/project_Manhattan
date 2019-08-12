@@ -35,8 +35,12 @@ const getState = ({ getStore, setStore }) => {
 			clean: evento => {
 				const store = getStore();
 				setStore({
-					InputsToken: {}
+					inputsLogin: "",
+					InputsToken: ""
 				});
+				localStorage.clear();
+				//window.location = "/login";
+				//console.log("Este console va donde se supone que se borra la wea", store.InputsToken);
 			},
 			obtenerDataCamp: evento => {
 				const store = getStore();

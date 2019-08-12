@@ -124,13 +124,9 @@ export class Registro extends React.Component {
 										placeholder="12345678-9"
 										name="rut"
 										onChange={e => this.actioncontext.obtenerDataRegistro(e)}
+										onSubmit={this.handleSubmit}
 									/>
 								</div>
-								{/*
-								<button onClick={this.botonobtenerregistro} type="button" className="btn btn-primary">
-									Registar cuenta
-								</button>
-								*/}
 								<button type="submit" className="btn btn-primary">
 									Registar cuenta
 								</button>
