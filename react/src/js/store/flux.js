@@ -1,3 +1,4 @@
+const enlace = "https://3000-c9fe59de-1983-4d56-95a7-5d7053a69968.ws-us0.gitpod.io";
 const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
@@ -27,6 +28,7 @@ const getState = ({ getStore, setStore }) => {
 				username: "",
 				password: ""
 			},
+			InputsLoginBeta: "",
 			InputsToken: {}
 		},
 		actions: {
@@ -53,7 +55,7 @@ const getState = ({ getStore, setStore }) => {
 			obtenerDataRegistroDos: evento => {
 				const store = getStore();
 				const name = evento.target.name;
-				let oldStore = store.inputsRegistro;
+				let oldStore = store.inputsValidador;
 				oldStore[name] = evento.target.value;
 				setStore({ inputsValidador: oldStore });
 			},
@@ -67,7 +69,7 @@ const getState = ({ getStore, setStore }) => {
 			registroCamp: contacto => {
 				const store = getStore();
 				const bearer = "Bearer " + store.InputsToken.access;
-				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/users/campaigns/", {
+				fetch(enlace + "/api/users/campaigns/", {
 					method: "Post",
 					body: JSON.stringify(contacto),
 					headers: {
@@ -81,7 +83,15 @@ const getState = ({ getStore, setStore }) => {
 					});
 			},
 			obtenerCampanas: () => {
-				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/users/campaigns/")
+				const store = getStore();
+				const bearer = "Bearer " + store.InputsToken.access;
+				fetch(enlace + "/api/users/campaigns/", {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: bearer
+					}
+				})
 					.then(resp => resp.json())
 					.then(resp => {
 						setStore({
@@ -91,30 +101,34 @@ const getState = ({ getStore, setStore }) => {
 					});
 			},
 			obtenerUrlCampanas: () => {
-				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/results/12")
+				const store = getStore();
+				const bearer = "Bearer " + store.InputsToken.access;
+				fetch(enlace + "/api/results/13", {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: bearer
+					}
+				})
 					.then(resp => resp.json())
 					.then(resp => {
 						setStore({
 							respUrlCamp: resp
 						});
-						console.log("Lo que trae el fetch get de las URL de campañas", resp);
+						//console.log("Lo que trae el fetch get de las URL de campañas", resp);
 					});
 			},
 			eliminacionCamp: (contactoid, redirect) => {
 				const store = getStore();
 				const bearer = "Bearer " + store.InputsToken.access;
-				fetch(
-					"https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/users/campaigns/" +
-						contactoid,
-					{
-						method: "DELETE",
-						body: JSON.stringify(),
-						headers: {
-							"Content-Type": "application/json",
-							Authorization: bearer
-						}
+				fetch(enlace + "/api/users/campaigns/" + contactoid, {
+					method: "DELETE",
+					body: JSON.stringify(),
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: bearer
 					}
-				).then(resp => {
+				}).then(resp => {
 					//					Esta línea es para validad el ok, respuesta de servidor.
 					if (resp.ok) {
 						alert("La campaña ha sido eliminada con exito");
@@ -124,7 +138,7 @@ const getState = ({ getStore, setStore }) => {
 			},
 			registroUsuario: (contacto, redirect) => {
 				redirect.push("/login");
-				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/register/", {
+				fetch(enlace + "/api/register/", {
 					method: "Post",
 					body: JSON.stringify(contacto),
 					headers: {
@@ -138,20 +152,34 @@ const getState = ({ getStore, setStore }) => {
 			},
 			// Abajo me logeo e intentaré obtener el token
 			loginUsuario: (contacto, redirect) => {
-				fetch("https://3000-a9e90353-6f2d-479c-9912-869cf4ee8d41.ws-us0.gitpod.io/api/token/", {
+				const store = getStore();
+				fetch(enlace + "/api/token/", {
 					method: "Post",
 					body: JSON.stringify(contacto),
 					headers: {
 						"Content-Type": "application/json"
 					}
 				})
-					.then(resp => resp.json())
+					.then(resp => {
+						//console.log("resp sin json", resp);
+						if (resp.ok === true) {
+							setStore({
+								InputsLoginBeta: resp.ok
+							});
+						}
+						//console.log("Debería guardar el response.ok, true o false", store.InputsLoginBeta);
+						return resp.json();
+					})
 					.then(resp => {
 						setStore({
 							InputsToken: resp
 						});
-						redirect.push("/");
-						console.log("Acá debería estar todo lo que responde el fetch del login", resp);
+						if (store.InputsLoginBeta === true) {
+							redirect.push("/campana");
+						} else {
+							alert("Su nombre de usuario o contraseña no coinciden");
+						}
+						//console.log("Acá debería estar todo lo que responde el fetch del login", resp);
 					});
 			}
 		}

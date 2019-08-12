@@ -15,7 +15,7 @@ export class HomeReal extends React.Component {
 	}
 	enviarLoginUsuario() {
 		this.actioncontext.loginUsuario(this.storecontext.inputsLogin, this.props.history);
-		console.log("Envío de login", this.storecontext.inputsLogin);
+		//console.log("Envío de login", this.storecontext.inputsLogin);
 	}
 	render() {
 		return (

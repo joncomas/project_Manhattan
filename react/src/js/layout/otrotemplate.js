@@ -6,7 +6,7 @@ const VistaPrincipal = ({ children }) => (
 	<div className="master-layout">
 		<header>
 			<div className="text-center mt-5">
-				<h1>LEMR - Tu lugar para comprar y vender favorito de internet</h1>
+				<h1>LEMR - Tu lugar de internet favorito para comprar y vender</h1>
 			</div>
 		</header>
 		<main>{children}</main>
