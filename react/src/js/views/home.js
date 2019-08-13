@@ -22,40 +22,55 @@ export class Home extends React.Component {
 				{({ store, actions }) => {
 					this.actioncontext = actions;
 					this.storecontext = store;
+					const ultimoDigito = store.respCamp.length - 1;
 					const campanitasres = store.respCamp.map((campanas, index) => {
-						return (
-							<div className="col-md-12" key={index}>
-								<div className="card text-center">
-									<div className="card-header">Campaña</div>
-									<div className="card-body">
-										<h5 className="card-title">{campanas.name_camp}</h5>
-										<p className="card-text">{campanas.details}</p>
-										<Link to="/campana">
-											<button className="btn btn-primary">Ir a detalles</button>
-										</Link>
+						if (index === ultimoDigito) {
+							return (
+								<div className="col-md-12" key={index}>
+									<div className="card text-center">
+										<div className="card-header">Campaña</div>
+										<div className="card-body">
+											<h5 className="card-title">{campanas.name_camp}</h5>
+											<p className="card-text">{campanas.details}</p>
+											<div className="row">
+												<div className="col-md-12">
+													<Link to={"/campana/" + campanas.id}>
+														<button className="btn btn-primary">
+															Ir a resultados campaña
+														</button>
+													</Link>
+													<Link to={"/editarcampana/" + campanas.id}>
+														<button className="btn btn-info">Editar campaña</button>
+													</Link>
+												</div>
+											</div>
+										</div>
+										<div className="card-footer text-muted">Gracias por preferirnos</div>
 									</div>
-									<div className="card-footer text-muted">Gracias por preferirnos</div>
 								</div>
-							</div>
-						);
+							);
+						}
 					});
 					return (
 						<div className="container">
 							<div className="row">
 								<div className="col-md-8">
-									<h1>Últimas dos campaña creada</h1>
+									<h1>Última campaña creada</h1>
 								</div>
-								<div className="col-md-4">
+
+								<div className="col-md-12">{campanitasres}</div>
+								<div className="col-md-4 offset-5">
 									<Link to="/crearcampaña">
 										<button className="btn btn-success">Crear campaña</button>
 									</Link>
 								</div>
-								<div className="col-md-12">{campanitasres}</div>
 								<div>
 									<p>
 										LEMR consiste en crear campañas para obtener resultados. Siga las siguientes
 										instrucciones si tiene dudas.
 									</p>
+									<h6>Instrucciones</h6>
+									<p>Acá irán las instrucciones cuando sepa bien qué debo escribir</p>
 								</div>
 							</div>
 						</div>

@@ -1,4 +1,4 @@
-const enlace = "https://3000-c9fe59de-1983-4d56-95a7-5d7053a69968.ws-us0.gitpod.io";
+const enlace = "https://3000-c0d0a76d-5969-47be-994e-2c92ab782211.ws-us0.gitpod.io";
 const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
@@ -39,7 +39,7 @@ const getState = ({ getStore, setStore }) => {
 					InputsToken: ""
 				});
 				localStorage.clear();
-				//window.location = "/login";
+				window.location = "/login";
 				//console.log("Este console va donde se supone que se borra la wea", store.InputsToken);
 			},
 			obtenerDataCamp: evento => {
@@ -86,7 +86,22 @@ const getState = ({ getStore, setStore }) => {
 						//console.log("Este console log, se muestra cuando se efectua el registro de camp", resp);
 					});
 			},
-			obtenerCampanas: () => {
+			editarCamp: (contacto, contactoid, redirect) => {
+				const store = getStore();
+				const bearer = "Bearer " + store.InputsToken.access;
+				fetch(enlace + "/api/users/campaigns/" + contactoid, {
+					method: "PUT",
+					body: JSON.stringify(contacto),
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: bearer
+					}
+				}).then(resp => {
+					//console.log("Este console log, se muestra cuando se efectua el registro de camp", resp);
+					redirect.push("/campana");
+				});
+			},
+			obtenerCampanas: (contactoid, redirect) => {
 				const store = getStore();
 				const bearer = "Bearer " + store.InputsToken.access;
 				fetch(enlace + "/api/users/campaigns/", {

@@ -74,7 +74,7 @@ export class CrearCampaña extends React.Component {
 											</div>
 										</div>
 										<div className="form-group col-md-12">
-											<p>Elige dónde se realizará la camapaña</p>
+											<p>Elige dónde se realizará la campaña</p>
 										</div>
 										<div className="dropdown">
 											<a
