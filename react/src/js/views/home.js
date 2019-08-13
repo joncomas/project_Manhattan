@@ -31,7 +31,7 @@ export class Home extends React.Component {
 										<h5 className="card-title">{campanas.name_camp}</h5>
 										<p className="card-text">{campanas.details}</p>
 										<Link to="/campana">
-											<button className="btn btn-primary">Ir a campañas</button>
+											<button className="btn btn-primary">Ir a detalles</button>
 										</Link>
 									</div>
 									<div className="card-footer text-muted">Gracias por preferirnos</div>
@@ -43,7 +43,7 @@ export class Home extends React.Component {
 						<div className="container">
 							<div className="row">
 								<div className="col-md-8">
-									<h1>Últimas campaña creada</h1>
+									<h1>Últimas dos campaña creada</h1>
 								</div>
 								<div className="col-md-4">
 									<Link to="/crearcampaña">

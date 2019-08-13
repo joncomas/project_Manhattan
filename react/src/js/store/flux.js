@@ -104,10 +104,10 @@ const getState = ({ getStore, setStore }) => {
 						//console.log("Lo que trae el fetch get de campañas", resp);
 					});
 			},
-			obtenerUrlCampanas: () => {
+			obtenerUrlCampanas: contactoid => {
 				const store = getStore();
 				const bearer = "Bearer " + store.InputsToken.access;
-				fetch(enlace + "/api/results/13", {
+				fetch(enlace + "/api/results/" + contactoid, {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -179,7 +179,7 @@ const getState = ({ getStore, setStore }) => {
 							InputsToken: resp
 						});
 						if (store.InputsLoginBeta === true) {
-							redirect.push("/campana");
+							redirect.push("/");
 						} else {
 							alert("Su nombre de usuario o contraseña no coinciden");
 						}
