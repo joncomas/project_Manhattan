@@ -44,6 +44,17 @@ class CampaignView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def put(self, request, campaign_id=None):
+        keeper = request.data
+        keeper['fk_user'] = request.user.id
+        campaign = Campaign.objects.get(pk=campaign_id)
+        serializer = CampaignSerializer(campaign, data=keeper)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     def get(self, request, campaign_id=None):
         if  campaign_id is not None:
             campaign = Campaign.objects.filter(fk_user=request.user.id)
