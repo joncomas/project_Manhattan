@@ -32,7 +32,7 @@ export class Campana extends React.Component {
 									<p>{campanas.name_camp}</p>
 								</div>
 								<div className="col-sm-6">
-									<h6>Objeto a buscar</h6>
+									<h6>URL a buscar</h6>
 									<p>{campanas.item_to_search}</p>
 								</div>
 								<div className="col-sm-12">
@@ -41,8 +41,12 @@ export class Campana extends React.Component {
 								</div>
 								<div className="col-sm-12">
 									<Link to={"/campana/" + campanas.id}>
-										<button className="btn btn-primary">Obtener resultados</button>
+										<button className="btn btn-primary">Ir a detalles</button>
 									</Link>
+									<Link to={"/editarcampana/" + campanas.id}>
+										<button className="btn btn-info">Editar campaña</button>
+									</Link>
+
 									<button
 										onClick={e => this.botonEliminarCampana(e, campanas.id)}
 										className="btn btn-dark offset-9">
@@ -54,7 +58,7 @@ export class Campana extends React.Component {
 					});
 					return (
 						<div>
-							<h1>Campañas activas</h1>
+							<h1>Todas las campañas activas</h1>
 							{campanitas}
 						</div>
 					);
