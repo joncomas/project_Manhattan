@@ -78,7 +78,7 @@ export class UrlCamp extends React.Component {
 								</div>
 								<div className="col-md-12">
 									<Link to="/campana">
-										<button className="btn btn-primary">Volver</button>
+										<button className="btn btn-primary">Ir a campañas activas</button>
 									</Link>
 								</div>
 							</div>

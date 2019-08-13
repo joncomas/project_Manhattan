@@ -28,8 +28,8 @@ export class Editar extends React.Component {
 	}
 	handleSubmit = e => {
 		e.preventDefault();
-		this.actioncontext.editarCamp(this.storecontext.inputsCamp, this.props.match.params.id, this.props.history);
 		alert("Se ha editado con éxito");
+		this.actioncontext.editarCamp(this.storecontext.inputsCamp, this.props.match.params.id, this.props.history);
 	};
 	render() {
 		return (

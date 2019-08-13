@@ -70,7 +70,7 @@ const getState = ({ getStore, setStore }) => {
 				oldStore[name] = evento.target.value;
 				setStore({ inputsLogin: oldStore });
 			},
-			registroCamp: contacto => {
+			registroCamp: (contacto, redirect) => {
 				const store = getStore();
 				const bearer = "Bearer " + store.InputsToken.access;
 				fetch(enlace + "/api/users/campaigns/", {
@@ -83,6 +83,7 @@ const getState = ({ getStore, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(resp => {
+						redirect.push("/");
 						//console.log("Este console log, se muestra cuando se efectua el registro de camp", resp);
 					});
 			},
