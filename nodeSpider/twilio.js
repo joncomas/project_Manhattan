@@ -6,6 +6,11 @@ const authToken = '6bcfc7c21a251fdb59942719e1f13e72';
 const client = require('twilio')(accountSid, authToken);
 
 const messageAll = (body, to) => {
+
+
+  console.log("El siguiente mensaje: "+body+" ha sido enviado al numero: "+to+ " en este momento")
+
+   /*
     client.messages
     .create({
         body: body,
@@ -13,6 +18,7 @@ const messageAll = (body, to) => {
         to: to
     })
     .then(message => console.log(message.sid));
+*/
 }
 
 module.exports = {

@@ -12,8 +12,8 @@ const $ = require('cheerio');
 const fs = require('fs');
 
 
-
 /*
+
 // The code below goes to the urls and fetches the phone numbers, then inserts then into the db.
 phoneGrabber.getAll((resp) => {
     console.log('aqui esta completo', resp);
@@ -22,27 +22,20 @@ phoneGrabber.getAll((resp) => {
 
 */
 
-
-
     let db = new sqlite3.Database('../api/db.sqlite3');
-        let detailsResp = "SELECT details FROM api_campaign WHERE id = 2";
+
+        let detailsResp = "SELECT api_campaign.details, api_results.results FROM api_campaign INNER JOIN api_results ON api_campaign.id == api_results.fk_campaign_id";
+
         db.all(detailsResp, function(err, rows) {
-        console.log('QUERY ', err, rows)
-        });
-
-
-
-
-        let resultsResp = "SELECT results FROM api_results WHERE fk_campaign_id = 2";
-        db.all(resultsResp, function(err, rows) {
-        console.log('QUERY ', err, rows)
-        });
-
+        console.log('QUERY ', err, rows);
+        for(let i=0;i<rows.length;i++){
+            messageSender.messageAll(rows[i].details, rows[i].results);
+        }
+    });
 
     db.close();
 
 
-//phoneGrabber.messageSender(details, resp);
 
 
 
