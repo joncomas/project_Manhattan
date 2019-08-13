@@ -53,14 +53,9 @@ export class HomeReal extends React.Component {
 									</div>
 								</div>
 								<div className="row">
-									<a>
-										<button type="submit" className="btn btn-primary">
-											Login
-										</button>
-										{/*<button onClick={this.enviarLoginUsuario} className="btn btn-primary">
-										//	Login
-										</button>*/}
-									</a>
+									<button type="submit" className="btn btn-primary">
+										Login
+									</button>
 									<Link to="/register">
 										<button className="btn btn-primary">Register</button>
 									</Link>

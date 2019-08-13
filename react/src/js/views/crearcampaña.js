@@ -1,6 +1,7 @@
 import React from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export class CrearCampaña extends React.Component {
 	constructor() {
@@ -17,6 +18,11 @@ export class CrearCampaña extends React.Component {
 		this.actioncontext.registroCamp(this.storecontext.inputsCamp);
 		//console.log("En algún momento, este botón va a validar información.");
 	}
+	handleSubmit = e => {
+		e.preventDefault();
+		alert("se ha creado con éxito su campaña");
+		this.actioncontext.registroCamp(this.storecontext.inputsCamp, this.props.history);
+	};
 	render() {
 		return (
 			<Context.Consumer>
@@ -29,7 +35,7 @@ export class CrearCampaña extends React.Component {
 								<h1>Cree su camapaña favorita</h1>
 							</div>
 							<div className="col-md-12">
-								<form>
+								<form onSubmit={this.handleSubmit}>
 									<div className="form-row">
 										<div className="form-group col-md-12">
 											<label htmlFor="inputnombre">Nombre de su campaña</label>
@@ -40,6 +46,7 @@ export class CrearCampaña extends React.Component {
 												placeholder="Nombre de su campaña"
 												name="name_camp"
 												onChange={e => this.actioncontext.obtenerDataCamp(e)}
+												required
 											/>
 										</div>
 										<div className="form-group col-md-12">
@@ -51,6 +58,7 @@ export class CrearCampaña extends React.Component {
 												placeholder="https://www.algo.algo"
 												name="item_to_search"
 												onChange={e => this.actioncontext.obtenerDataCamp(e)}
+												required
 											/>
 										</div>
 										<div className="form-group col-md-12">
@@ -74,7 +82,7 @@ export class CrearCampaña extends React.Component {
 											</div>
 										</div>
 										<div className="form-group col-md-12">
-											<p>Elige dónde se realizará la camapaña</p>
+											<p>Elige dónde se realizará la campaña</p>
 										</div>
 										<div className="dropdown">
 											<a
@@ -107,20 +115,16 @@ export class CrearCampaña extends React.Component {
 												rows="3"
 												name="details"
 												onChange={e => this.actioncontext.obtenerDataCamp(e)}
+												required
 											/>
 										</div>
 										<div className="form-group col-md-12">
 											<hr />
 										</div>
 									</div>
-									<Link to="/">
-										<button
-											onClick={e => this.botonValidarInfo(e)}
-											type="button"
-											className="btn btn-primary">
-											Inscribir campaña
-										</button>
-									</Link>
+									<button type="submit" className="btn btn-primary">
+										Crear campaña
+									</button>
 									<Link to="/">
 										<button className="btn btn-primary">Cancelar</button>
 									</Link>
@@ -133,3 +137,7 @@ export class CrearCampaña extends React.Component {
 		);
 	}
 }
+
+CrearCampaña.propTypes = {
+	history: PropTypes.any
+};

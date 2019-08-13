@@ -31,7 +31,7 @@ export class Navbar extends React.Component {
 							</Link>
 							<div className="ml-auto">
 								<button onClick={this.limpiarinfo} className="btn btn-primary">
-									Logout o k ase
+									Desconectarse
 								</button>
 							</div>
 						</nav>
