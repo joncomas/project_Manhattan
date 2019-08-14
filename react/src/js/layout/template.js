@@ -4,6 +4,7 @@ import { Navbar } from "../component/navbar";
 import { LateralBar } from "../component/lateralbar";
 import PropType from "prop-types";
 import { Context } from "../store/appContext";
+import "../../styles/template.scss";
 
 const MasterLayout = ({ children }) => {
 	return (
@@ -14,7 +15,7 @@ const MasterLayout = ({ children }) => {
 					return Object.keys(store.InputsToken).length === 0 ? (
 						<Redirect to="/login" />
 					) : (
-						<div className="master-layout">
+						<div className="col-md-12">
 							<header>
 								<Navbar />
 							</header>
