@@ -3,75 +3,65 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "../../styles/homereal.scss";
+import { Login, Register } from "../component/login/index";
 
 export class HomeReal extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.actioncontext = null;
 		this.storecontext = null;
 		this.state = {
-			variableparaquenosemeolvidequeexisteelestate: []
+			isLogginActive: true
 		};
 	}
-	handleSubmit = e => {
-		e.preventDefault();
-		this.actioncontext.loginUsuario(this.storecontext.inputsLogin, this.props.history);
-	};
+	componentDidMount() {
+		this.rightSide.classList.add("right");
+	}
+	changeState() {
+		const { isLogginActive } = this.state;
+
+		if (isLogginActive) {
+			this.rightSide.classList.remove("right");
+			this.rightSide.classList.add("left");
+		} else {
+			this.rightSide.classList.remove("left");
+			this.rightSide.classList.add("right");
+		}
+		this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
+	}
 	render() {
+		const { isLogginActive } = this.state;
+		const current = isLogginActive ? "Register" : "Login";
+		const currentActive = isLogginActive ? "login" : "register";
 		return (
 			<Context.Consumer>
 				{({ store, actions }) => {
 					this.actioncontext = actions;
 					this.storecontext = store;
 					return (
-						<div className="logintodo container">
-							<form onSubmit={this.handleSubmit}>
-								<div className="col-md-3 offset-5">
-									<div className="row">
-										<h3>LOGIN</h3>
-									</div>
+						<div className="App">
+							<div className="login">
+								<div className="container" ref={ref => (this.container = ref)}>
+									{isLogginActive && (
+										<Login
+											historia={this.props.history}
+											containerRef={ref => (this.current = ref)}
+										/>
+									)}
+									{!isLogginActive && (
+										<Register
+											historia={this.props.history}
+											containerRef={ref => (this.current = ref)}
+										/>
+									)}
 								</div>
-								<div className="row">
-									<div className="col-md-12">
-										<div className="col-md-5 offset-4">
-											<input
-												type="text"
-												className="form-control"
-												placeholder="Usuario"
-												id="usuario"
-												name="username"
-												onChange={e => this.actioncontext.obtenerDatosLogin(e)}
-												onSubmit={this.handleSubmit}
-												required
-											/>
-										</div>
-										<div className="col-md-5 offset-4">
-											<input
-												type="password"
-												className="form-control"
-												placeholder="Password"
-												id="contraseña"
-												name="password"
-												onChange={e => this.actioncontext.obtenerDatosLogin(e)}
-												onSubmit={this.handleSubmit}
-												required
-											/>
-										</div>
-									</div>
-								</div>
-								<div className="container">
-									<div className="row">
-										<div className="col-md-5 offset-5">
-											<button type="submit" className="btn btn-primary">
-												Login
-											</button>
-											<Link to="/register">
-												<button className="btn btn-primary">Register</button>
-											</Link>
-										</div>
-									</div>
-								</div>
-							</form>
+								<RightSide
+									current={current}
+									currentActive={currentActive}
+									containerRef={ref => (this.rightSide = ref)}
+									onClick={this.changeState.bind(this)}
+								/>
+							</div>
 						</div>
 					);
 				}}
@@ -80,6 +70,21 @@ export class HomeReal extends React.Component {
 	}
 }
 
+const RightSide = props => {
+	return (
+		<div className="right-side" ref={props.containerRef} onClick={props.onClick}>
+			<div className="inner-container">
+				<div className="text">{props.current}</div>
+			</div>
+		</div>
+	);
+};
+
 HomeReal.propTypes = {
 	history: PropTypes.any
+};
+RightSide.propTypes = {
+	containerRef: PropTypes.any,
+	onClick: PropTypes.any,
+	current: PropTypes.any
 };
