@@ -5,11 +5,11 @@ import "../../styles/otrotemplate.scss";
 
 const VistaPrincipal = ({ children }) => (
 	<div className="master-layout">
-		<header>
+		{/*		<header>
 			<div className="tituloforever text-center mt-5">
 				<h1>LEMR - Tu lugar de internet favorito para comprar y vender</h1>
 			</div>
-		</header>
+		</header>*/}
 		<main>{children}</main>
 	</div>
 );
