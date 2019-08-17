@@ -81,7 +81,7 @@ export class Register extends React.Component {
 											/>
 										</div>
 										<div className="form-group">
-											<label htmlFor="email">Repita email</label>
+											<label htmlFor="email">Confirm email</label>
 											<input
 												type="email"
 												className="form-control"
@@ -105,7 +105,7 @@ export class Register extends React.Component {
 											/>
 										</div>
 										<div className="form-group">
-											<label htmlFor="password">Repita password</label>
+											<label htmlFor="password">Confirm password</label>
 											<input
 												type="password"
 												className="form-control"
@@ -117,7 +117,7 @@ export class Register extends React.Component {
 											/>
 										</div>
 										<div className="form-group">
-											<label htmlFor="inputrut">Ingrese su rut</label>
+											<label htmlFor="inputrut">Rut</label>
 											<input
 												type="text"
 												className="form-control"
