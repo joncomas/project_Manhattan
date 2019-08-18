@@ -40,21 +40,26 @@ export class HomeReal extends React.Component {
 					this.storecontext = store;
 					return (
 						<div className="App">
-							<div className="login">
+							<div className="reglog">
 								<div className="container" ref={ref => (this.container = ref)}>
 									{isLogginActive && (
-										<Login
-											historia={this.props.history}
-											containerRef={ref => (this.current = ref)}
-										/>
+										<div className="login">
+											<Login
+												historia={this.props.history}
+												containerRef={ref => (this.current = ref)}
+											/>
+										</div>
 									)}
 									{!isLogginActive && (
-										<Register
-											historia={this.props.history}
-											containerRef={ref => (this.current = ref)}
-										/>
+										<div className="register">
+											<Register
+												historia={this.props.history}
+												containerRef={ref => (this.current = ref)}
+											/>
+										</div>
 									)}
 								</div>
+
 								<RightSide
 									current={current}
 									currentActive={currentActive}
