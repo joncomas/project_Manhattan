@@ -1,7 +1,7 @@
 import React from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import "../../styles/lateral.scss";
+import "../../styles/lateralbar.scss";
 
 export class LateralBar extends React.Component {
 	constructor() {
