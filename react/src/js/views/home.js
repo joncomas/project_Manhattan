@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 
 export class Home extends React.Component {

@@ -43,12 +43,12 @@ export class Register extends React.Component {
 									</div>
 									<div className="form">
 										<div className="form-group">
-											<label htmlFor="inputnombre">Nombre real</label>
+											<label htmlFor="inputnombre">Real Name</label>
 											<input
 												type="text"
 												className="form-control"
 												id="inputnombre"
-												placeholder="Nombre real"
+												placeholder="Andrew"
 												name="first_name"
 												onChange={e => this.actioncontext.obtenerDataRegistro(e)}
 												required
@@ -61,7 +61,7 @@ export class Register extends React.Component {
 												type="text"
 												className="form-control"
 												id="inputnick"
-												placeholder="Nombre de usuario"
+												placeholder="Username"
 												name="username"
 												onChange={e => this.actioncontext.obtenerDataRegistro(e)}
 												required
@@ -74,7 +74,7 @@ export class Register extends React.Component {
 												type="email"
 												className="form-control"
 												id="inputEmail1"
-												placeholder="Ingrese email"
+												placeholder="email@email.com"
 												name="email"
 												onChange={e => this.actioncontext.obtenerDataRegistro(e)}
 												required
@@ -86,7 +86,7 @@ export class Register extends React.Component {
 												type="email"
 												className="form-control"
 												id="inputEmail2"
-												placeholder="Ingrese email"
+												placeholder="email@email.com"
 												name="emailrep"
 												onChange={e => this.actioncontext.obtenerDataRegistroDos(e)}
 												required
