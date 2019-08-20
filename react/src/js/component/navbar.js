@@ -27,7 +27,7 @@ export class Navbar extends React.Component {
 					this.actioncontext = actions;
 					this.storecontext = store;
 					return (
-						<nav className="navbar navbar-dark bg-dark mb-3">
+						<nav className="navbar fixed-top navbar-dark bg-dark md-12">
 							<Link to="/">
 								<span className="navbar-brand mb-0 h1">{<img src={loginImg} />}</span>
 							</Link>

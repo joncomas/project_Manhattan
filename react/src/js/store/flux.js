@@ -1,4 +1,4 @@
-const enlace = "https://3000-c0d0a76d-5969-47be-994e-2c92ab782211.ws-us0.gitpod.io";
+const enlace = "https://3000-c0d0a76d-5969-47be-994e-2c92ab782211.ws-eu0.gitpod.io";
 const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
