@@ -5,6 +5,7 @@ import { LateralBar } from "../component/lateralbar";
 import PropType from "prop-types";
 import { Context } from "../store/appContext";
 import "../../styles/template.scss";
+import { Footer } from "../component/footer";
 
 const MasterLayout = ({ children }) => {
 	return (
@@ -26,6 +27,9 @@ const MasterLayout = ({ children }) => {
 								<div className=" conido col-sm-9">
 									<main>{children}</main>
 								</div>
+								<footer className="col-md-2 offset-md-6">
+									<Footer />
+								</footer>
 							</div>
 						</div>
 					);

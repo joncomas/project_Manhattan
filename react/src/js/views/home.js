@@ -26,7 +26,7 @@ export class Home extends React.Component {
 						if (index === ultimoDigito) {
 							return (
 								<div className="col-md-12" key={index}>
-									<div className="card text-center">
+									<div className="card  text-white bg-success text-center">
 										<div className="card-header">Campaña</div>
 										<div className="card-body">
 											<h5 className="card-title">{campanas.name_camp}</h5>
