@@ -15,7 +15,7 @@ const MasterLayout = ({ children }) => {
 					return Object.keys(store.InputsToken).length === 0 ? (
 						<Redirect to="/login" />
 					) : (
-						<div className="col-md-12">
+						<div className=" shit">
 							<header>
 								<Navbar />
 							</header>
@@ -23,7 +23,7 @@ const MasterLayout = ({ children }) => {
 								<div className="col-sm-3">
 									<LateralBar />
 								</div>
-								<div className="col-sm-9">
+								<div className=" conido col-sm-9">
 									<main>{children}</main>
 								</div>
 							</div>
