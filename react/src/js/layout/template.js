@@ -24,7 +24,7 @@ const MasterLayout = ({ children }) => {
 								<div className="col-sm-3">
 									<LateralBar />
 								</div>
-								<div className=" conido col-sm-9">
+								<div className=" conido col-sm-8 offset-md-2">
 									<main>{children}</main>
 								</div>
 								<footer className="col-md-2 offset-md-6">

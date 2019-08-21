@@ -25,7 +25,7 @@ export class Home extends React.Component {
 					const campanitasres = store.respCamp.map((campanas, index) => {
 						if (index === ultimoDigito) {
 							return (
-								<div className="col-md-12" key={index}>
+								<div className="col-md-10 offset-md-2 text-center" key={index}>
 									<div className="card  text-white bg-success text-center">
 										<div className="card-header">Campaña</div>
 										<div className="card-body">
@@ -53,17 +53,17 @@ export class Home extends React.Component {
 					return (
 						<div className="container">
 							<div className="row">
-								<div className="col-md-8">
+								<div className="col-md-12 text-center">
 									<h1>Última campaña creada</h1>
 								</div>
 
 								<div className="col-md-12">{campanitasres}</div>
-								<div className="col-md-4 offset-5">
+								<div className="col-md-4 offset-6">
 									<Link to="/crearcampaña">
 										<button className="btn btn-success">Crear campaña</button>
 									</Link>
 								</div>
-								<div>
+								<div className="col-md-8 offset-md-3 text-center">
 									<p>
 										LEMR consiste en crear campañas para obtener resultados. Siga las siguientes
 										instrucciones si tiene dudas.

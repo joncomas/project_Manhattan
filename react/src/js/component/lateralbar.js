@@ -17,9 +17,9 @@ export class LateralBar extends React.Component {
 				{({ store, actions }) => {
 					this.actioncontext = actions;
 					return (
-						<ul className="nav flex-column">
+						<ul className=" typo nav flex-column">
 							<li className="nav-item">
-								<Link to="/campana" className="nav-link active">
+								<Link to="/campana" className=" camactive nav-link active">
 									Campañas activas
 								</Link>
 							</li>
