@@ -53,12 +53,12 @@ export class Home extends React.Component {
 					return (
 						<div className="container">
 							<div className="row">
-								<div className="col-md-12 text-center">
+								<div className="col-md-6 offset-md-4 text-center">
 									<h1>Última campaña creada</h1>
 								</div>
 
 								<div className="col-md-12">{campanitasres}</div>
-								<div className="col-md-4 offset-6">
+								<div className="crear col-md-4 offset-md-5">
 									<Link to="/crearcampaña">
 										<button className="btn btn-success">Crear campaña</button>
 									</Link>
