@@ -12,7 +12,7 @@ const $ = require('cheerio');
 const fs = require('fs');
 
 
-/*
+
 
 // The code below goes to the urls and fetches the phone numbers, then inserts then into the db.
 phoneGrabber.getAll((resp) => {
@@ -20,7 +20,7 @@ phoneGrabber.getAll((resp) => {
     dbWritter.queryAll(resp);
 });
 
-*/
+
 
     let db = new sqlite3.Database('../api/db.sqlite3');
 
