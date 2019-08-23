@@ -69,6 +69,7 @@ export class Home extends React.Component {
 										instrucciones si tiene dudas.
 									</p>
 									<h6>Instrucciones</h6>
+									<iframe width="560" height="315" src="https://www.youtube.com/embed/g8zVBpn6QJI" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullscreen></iframe>
 									<p>Acá irán las instrucciones cuando sepa bien qué debo escribir</p>
 								</div>
 							</div>

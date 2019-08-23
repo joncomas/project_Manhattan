@@ -10,7 +10,7 @@ const messageAll = (body, to) => {
 
   console.log("El siguiente mensaje: "+body+" ha sido enviado al numero: "+to+ " en este momento")
 
-   /*
+   
     client.messages
     .create({
         body: body,
@@ -18,7 +18,7 @@ const messageAll = (body, to) => {
         to: to
     })
     .then(message => console.log(message.sid));
-*/
+
 }
 
 module.exports = {
